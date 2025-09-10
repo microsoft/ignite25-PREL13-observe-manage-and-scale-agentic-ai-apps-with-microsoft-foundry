@@ -418,4 +418,4 @@ FodyWeavers.xsd
 *.msp
 
 #mkdocs static site 
-site/
+site/*
