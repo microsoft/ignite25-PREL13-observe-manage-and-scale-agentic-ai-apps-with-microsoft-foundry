@@ -1,5 +1,5 @@
 ---
-title : "Overview"
+title : "Begin Here"
 description: "PDY123: Learn How To Observe, Manage, and Scale, Agentic AI Apps Using Azure"
 ---
 
@@ -12,15 +12,56 @@ description: "PDY123: Learn How To Observe, Manage, and Scale, Agentic AI Apps U
     **Level:** 300-400 <br/>
     **Duration:** 4 hours
 
-## Application Scenario
+---
 
-You are an AI engineer at Zava, an enterprise retail store specializing in home improvement goods for DIY enthusiasts. Your team is building **Cora**, a shopping assistant AI to answer customer queries in-store and online. You have three requirements:
+## 1. Before You Begin
 
-1. Cora's responses must reflect the Zava brand with a custom tone & style
-1. Cora should be cost-effective to deploy given the simple, narrow task
-1. Cora should support end-to-end observability for trustworthy AI operation
+Before we dive into the workshop, here are two actions you should take:
 
-## Learning Objectives
+!!! info "1. STAR THE REPO & WATCH FOR UPDATES"
+
+On completing this workshop, you will walk away with a **personal copy** of the repo that you can use as a sandbox for self-guided exploration. We expect to continue updating this with new labs and resources. Click below to star the repo and watch for updates.
+
+<a class="github-button" href="https://github.com/microsoft/ignite25-PDY123-learn-how-to-observe-manage-and-scale-agentic-ai-apps-using-azure/" data-color-scheme="no-preference: light; light: light; dark: dark;" data-size="large" data-show-count="true" aria-label="Star microsoft/ignite25-PDY123-learn-how-to-observe-manage-and-scale-agentic-ai-apps-using-azure/ on GitHub"> Star This Repo </a>
+
+!!! info "2. PICK YOUR TAB"
+
+The workshop is setup for use by both instructor-led (in-venue) and self-guided (at-home) learners. Select the tab that represents your current status, to get the related instructions. _This preference is automatically enforced sitewide_,
+
+=== "Instructor-Led (In Venue)"
+
+    !!! success "I am at a Microsoft Ignite Session · I'll use the provided Azure subscription."
+
+=== "Self-Guided (At Home)"
+
+    !!! quote "I am working through the lab at home · I'll use my own Azure subscription."
+
+---
+
+## 2. About The Workshop
+
+This is a 4-hour workshop that is broken up into smaller labs that should be completed in order. 
+
+The workshop is organized into two tracks: **Core Labs** that cover the learning objectives outlined below, and **More Labs** that provide additional content for exploration if time permits. _You are encouraged to revisit the More Labs section in self-guided mode, at home_.
+
+!!! quote "PLANNING ROADMAP FOR CORE LABS"
+
+    ![Plan](./assets/plan.png)
+
+### 2.1 What are we building?
+
+Zava is an enterprise retail store that specializes in home improvement goods for DIY enthusiasts. You are an AI engineer tasked with building **Cora**, the new customer support AI chatbot for Zava customers. 
+
+To unlock business value, Zava sets three requirements:
+
+1. **Be Polite & Helpful** - Cora must respond with a desired tone & style.
+1. **Be Cost-Effective** - Cora should be fast to respond and cheap to operate
+1. **Be Safe & Reliable** - Cora has end-to-end observability for trustworthy AI operation
+
+In this workshop, we'll see how we can start from a basic AI Agent template - and iteratively refine model context and behavior till we get the desired _Cora AI_ experience.
+
+
+### 2.2 What will we learn?
 
 By the end of this session, you will be able to
 
@@ -31,52 +72,31 @@ By the end of this session, you will be able to
 - Trace and monitor chatbot operations to detect & debug performance issues
 - Understand how Azure AI Foundry enables end-to-end observability for AI 
 
-## Session Outline
 
-This 4-hour workshop is organized into "labs" to allow for potential breaks in between.
+### 2.3 Check Pre-Requisites!
 
-![Plan](./assets/plan.png)
+=== "Instructor-Led (In Venue)"
 
-Each lab is designed to cover a focused topic that you should be able to complete in under 25 minutes. Labs are grouped into two tracks:
+    To be effective in this workshop, you will need:
 
- - **Core Labs** - these cover the primary objectives for the session
- - **More Labs** - these cover bonus topics or tools for developers
+    - [ ] A personal GitHub Account. Sign up [for a free account](https://github.com/signup) if needed.
+    - [ ] Familiarity with Visual Studio Code and Python. This is a hands-on lab.
 
-We recommend completing the Core Labs in order, then selecting one or more of the bonus labs to explore if time permits. **By the end of this lab, you will have a personal fork of this repo** - and can revisit and continue learning on your own, with your own Azure subscription.
+    We will provide the following: 
 
+    - [X] Powered laptops setup with the labs for your use.
+    - [X] An Azure subscription with pre-provisioned resources.
 
-## Pre-Requisites
+=== "Self-Guided (At Home)"
 
-To participate in this workshop, you will need:
+    To be effective in this workshop, you will need:
 
-1. **A GitHub account**. Create an account for free.
-    - Use a personal account (not enterprise-affiliated)
-    - The free tier of GitHub Codespaces quota is enough
-1. **An Azure subscription**. Create an account for free.
-    - Instructor-led sessions may provide one for you.
-    - Self-guided sessions require you to bring your own.
-1. **Your own laptop**. 
-    - Bring a charger - this is a 4-hour workshop.
-    - Install a modern browser - e.g., Microsoft Edge.
-1. **Familiarity with Coding Environments**
-    - We use Python & Jupyter Notebooks in the labs
-    - We use Visual Studio Code as the editor
+    - [ ] A personal GitHub Account. Sign up [for a free account](https://github.com/signup) if needed.
+    - [ ] Familiarity with Visual Studio Code and Python. This is a hands-on lab.
+    - [ ] Your own laptop. Make sure it is fully-charged for a 4-hr session.
+    - [ ] Your own Azure subscription. We'll help you provision the project!
 
-## Getting Started
+## 3. Let's Get Started 🚀
 
-If you are seeing this instruction guide, you have probably completed these steps:
-
-- [X] Forked this repo to your personal profile
-- [X] Launched GitHub Codespaces from your fork
-- [X] Run `mkdocs serve` to get this preview
-
-Now it's time to dive into the workshop. [**Start here**](./Core-Labs/1-Get-Started/01.md) and pick your learning path!
-
-## Questions & Feedback
-
-Have questions or feedback? 
-
-1. [File an issue](https://github.com/microsoft/ignite25-PDY123-learn-how-to-observe-manage-and-scale-agentic-ai-apps-using-azure/issues/new) - to report a bug or errors in documentation
-1. [Join the community](https://aka.ms/foundrydevs) - post to the forum or get help on Discord
-
+Click the _Next_ button below - or click on [Core Labs](./Core-Labs/1-Get-Started/01/) in the navigation menu!
 
