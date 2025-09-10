@@ -1,13 +1,95 @@
 
-/* Target the logo image or SVG */
+/* Target the logo image or SVG 
 .md-header__button.md-logo img,
 .md-header__button.md-logo svg {
-  height: 2.4rem;  /* Adjust as needed */
+  height: 2.4rem;  /* Adjust as needed 
   width: 4.3rem;
 }
+*/
 
 /* Optional: remove default padding/margins */
 .md-header__button.md-logo {
   margin: 0;
   padding: 0;
+}
+
+/* Custom gradient styles for the navigation banner */
+.custom-gradient-banner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px; /* Height of the gradient banner */
+  background: linear-gradient(90deg, 
+    #30216F 0%,     /* Deep Purple */
+    #7C4ACD 20%,    /* Medium Purple */
+    #E94BBF 40%,    /* Vibrant Magenta/Pink */
+    #F2A1E6 60%,    /* Light Pink */
+    #2B76E5 100%    /* Electric Blue */
+  );
+  z-index: 10;
+}
+
+/* Alternative full-height gradient for the header */
+.md-header {
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 100 !important;
+}
+
+/* Make sure the gradient looks good in both light and dark modes */
+[data-md-color-scheme="default"] .custom-gradient-banner,
+[data-md-color-scheme="slate"] .custom-gradient-banner {
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+/* Custom styles for task and note admonitions with purple-pink color */
+.md-typeset .admonition.task,
+.md-typeset details.task {
+  border-color: #7C4ACD;
+}
+
+.md-typeset .task > .admonition-title,
+.md-typeset .task > summary {
+  background-color: rgba(124, 74, 205, 0.1);
+}
+
+.md-typeset .task > .admonition-title::before,
+.md-typeset .task > summary::before {
+  background-color: #7C4ACD;
+}
+
+.md-typeset .admonition.note,
+.md-typeset details.note {
+  border-color: #7C4ACD;
+}
+
+.md-typeset .note > .admonition-title,
+.md-typeset .note > summary {
+  background-color: rgba(124, 74, 205, 0.1);
+}
+
+.md-typeset .note > .admonition-title::before,
+.md-typeset .note > summary::before {
+  background-color: #7C4ACD;
+}
+
+/* Make navigation sidebar sticky */
+.md-sidebar {
+  position: sticky !important;
+  top: 4.8rem !important; /* Adjust based on the header height */
+  height: calc(100vh - 4.8rem) !important;
+  overflow-y: auto !important;
+}
+
+/* Ensure sidebar scrolls properly when content overflows */
+.md-sidebar__scrollwrap {
+  height: 100% !important;
+}
+
+/* Make tabs sticky */
+.md-tabs {
+  position: sticky !important;
+  top: 4.8rem !important; /* Height of the header */
+  z-index: 99 !important;
 }

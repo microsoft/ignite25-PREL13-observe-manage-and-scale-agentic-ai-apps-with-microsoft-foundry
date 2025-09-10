@@ -1,0 +1,6 @@
+# ................ Documentation
+mkdocs-material
+
+# ................ Development
+# Install requirements specified for labs
+-r lab/requirements.txt

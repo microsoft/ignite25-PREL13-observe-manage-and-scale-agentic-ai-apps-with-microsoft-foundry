@@ -1,0 +1,117 @@
+# -----------------------------
+# Material Theme Configuration
+# ------------------------------
+# red, pink, purple, deep purple, indigo, 
+# blue, light blue, cyan, teal, green, light green, 
+# lime, yellow, amber, orange, deep orange, brown, 
+# grey, blue grey , black, white
+#    primary: pink # teal
+#    accent: indigo
+#
+# *** FONT ***
+# Guide: https://squidfunk.github.io/mkdocs-material/setup/changing-the-fonts/?h=fonts
+# Google Fonts Supported: https://fonts.google.com/
+#
+# *** BLOG ***
+# https://squidfunk.github.io/mkdocs-material/setup/setting-up-a-blog/
+# ---------------------------------
+# General ...................................................
+site_name: Pre-Day Workshop
+site_url: https://nitya.github.io/ignite25-PDY123-learn-how-to-observe-manage-and-scale-agentic-ai-apps-using-azure
+site_author: Nitya Narasimhan
+site_description: >-
+  Pre-day workshop at Microsoft Ignite 2025
+
+# Repository .................................................
+repo_name: microsoft/ignite25-PDY123-learn-how-to-observe-manage-and-scale-agentic-ai-apps-using-azure
+repo_url: https://github.com/microsoft/ignite25-PDY123-learn-how-to-observe-manage-and-scale-agentic-ai-apps-using-azure
+
+# Copyright ...................................................
+copyright: >
+   Copyright &copy; 2023 - present Microsoft
+extra_css:
+  - assets/extra.css  # Adjust path if needed
+
+# Configuration ...............................................
+theme:
+  name: material
+  font:
+    code: Roboto Mono  #Monospaced
+    text: Roboto       #Regular
+  logo: assets/logo.svg
+  language: en
+  custom_dir: docs/overrides
+
+  # Theme Modes ...............................................
+  palette:
+    # Palette toggle for light mode
+    - scheme: default 
+      primary: blue
+      accent: pink
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    # Palette toggle for dark mode
+    - scheme: slate
+      primary: green
+      accent: cyan
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode 
+
+  # Theme Features ...............................................
+  features:
+    - navigation.instant
+    - #navigation.expand             # sidebar collapsible sections open
+    - navigation.instant.progress   # load progress indicator
+    - navigation.tracking           # tracks anchor tags in URL
+    - navigation.tabs               # tabbed on desktop, single in mobile    
+    - navigation.tabs.sticky        # tabs stick when scrolling down
+    - header.sticky                 # header sticks to top when scrolling
+    - navigation.path               # add breadcrumbs
+    - navigation.indexes            # default index.md in folder is section page
+    - navigation.top
+    - toc.follow
+    - navigation.footer
+    - content.code.copy             # allow copy-paste from codeblocks
+    - content.tabs.link             # Ensures site-wide switch to same tab name
+    - navigation.sticky             # sticky sidebar navigation
+
+# Extras  ...............................................
+extra:
+  generator: false
+# Plugins  ...............................................
+plugins:
+  - search
+
+# Extensions  ...............................................
+markdown_extensions:
+  - abbr
+  - admonition
+  - attr_list
+  - toc:
+      permalink: true
+      toc_depth: 3
+  - pymdownx.details
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.highlight:
+      auto_title: true
+      linenums: true
+  - pymdownx.snippets
+  - pymdownx.tabbed:
+      alternate_style: true
+      slugify: !!python/object/apply:pymdownx.slugs.slugify
+        kwds:
+          case: lower
+
+# Navigation  ...............................................
+nav:

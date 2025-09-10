@@ -1,74 +1,50 @@
-# Welcome Ignite 2025 Creators!
-
-Thanks for creating content for Ignite!  Please follow this guidance so all ignite repos have the same look and feel.
-
-## Put your docs in the docs folder
-
-This repo is configured for a user to view the docs through mkdocs.
-
-1. update the `mkdocs.yml` file to reference your session. Look particularly for the `site_name`, `site_author`, and `repo_name` tags.
-1. Subfolders in the docs folder will show up as tabs in the navigation bar.
-
-## Guidance
-
-1. Do not turn on github pages for this repo, traffic to github pages isn't captured in our metrics.
-1. Do not store slides or recordings in this repo
-
-## Update the badges!
-1. if the foundry discord and github links aren't appropriate for your session you can remove or change them.
-2. See shields.io for how to build your own dynamic or static badge for your community destinations, or other sample repos for how they've done
-3. Please limit your repo to one row of badges under the session title.
-
-
-## Update Readme
-
-1. Fill out the content below in this file, below the banner graphic, including the session code.
-2. Please embed links to Learn with your campaign codes!
-3. Add reources for your session to the Resources and Next Steps table
-
-## Improve SEO
-
-1. Update the Repo Info for this repo 
-    1. Click the gear icon⚙️ in the upper right.
-    1. Set a good description of this repo.
-    1. Add the technologies that you're using in this session.
-
-## Questions?
-Send them to [Mike Kinsman](mailto:mikki@microsoft.com) and [Laurent Bugnion](lbugnion@microsoft.com), or surface your question through your content lead.
-
-## Finished?
-- Remove the folders that you dont need or didn't use, please dont leave them empty.
-- Delete this line and everything above it!
-
 <p align="center">
-<img src="img/Banner-ignite-25.png" alt="decorative banner" width="1200"/>
+<img src="docs/assets/Banner-ignite-25.png" alt="decorative banner" width="1200"/>
 </p>
 
 # [Microsoft Ignite 2025](https://ignite.microsoft.com)
 
-## 🔥BRKXXX: Learn how to observe, manage, and scale agentic AI apps using Azure
+## Learn how to observe, manage, and scale agentic AI apps using Azure
 
 [![Microsoft Azure AI Foundry Discord](https://dcbadge.limes.pink/api/server/ByRwuEEgH4)](https://discord.com/invite/ByRwuEEgH4)
 [![Azure AI Foundry Developer Forum](https://img.shields.io/badge/GitHub-Azure_AI_Foundry_Developer_Forum-blue?style=for-the-badge&logo=github&color=adff2f&logoColor=fff)](https://aka.ms/foundry/forum)
 
 ### Session Description
 
-*Add Session Description*
+This hands-on workshop will provide participants with the skills to effectively manage, govern, and scale agentic AI applications using Azure and Azure AI Foundry. The session will cover observability capabilities, model management policies, agent functionalities, and governance strategies. Participants will engage in practical exercises to apply these concepts in real-world scenarios.
 
+- **Level:** 300-400 
+- **Duration:** 4 hours
+
+### Application Scenario
+
+Imagine this. You are an AI engineer at Zava, an enterprise retail store specializing in home improvement goods for DIY enthusiasts. Your team is building **Cora**, a shopping assistant AI to answer customer queries in-store and online. You have three requirements:
+
+1. The solution must reflect the Zava brand with a custom tone & style
+1. It should be cost-effective to deploy given the simple, narrow task
+1. It should support end-to-end observability to ensure trustworthy AI
 
 ### 🧠 Learning Outcomes
 
-By the end of this session, learners will be able to:
+By the end of this session, you will be able to
 
--  
--
--
+- Build and deploy an agentic AI retail chatbot on Azure AI Foundry
+- Evaluate the quality, safety & agentic efficacy of chatbot operation
+- Fine-Tune the chatbot model to customize tone & style of response
+- Distill chatbot behavior to a smaller model for cost-effective operation
+- Trace and monitor chatbot operations to detect & debug performance issues
+- Understand how Azure AI Foundry enables end-to-end observability for AI 
 
 ### 💻 Technologies Used
 
-1.
-1.
-1.
+- Azure Open AI models
+- Azure AI Foundry
+- Azure AI Evaluation SDK
+- Supervised Fine Tuning
+- Model Distillation
+- Azure Monitor
+- Azure Application Insights
+- Azure AI Search
 
 ### 📚 Resources and Next Steps
 
@@ -87,21 +63,26 @@ By the end of this session, learners will be able to:
 
 <table>
 <tr>
-    <td align="center"><a href="http://github.com/mikekinsman">
-        <img src="https://github.com/mikekinsman.png" width="100px;" alt="INSERT NAME HERE"
-"/><br />
-        <sub><b> INSERT NAME HERE
-</b></sub></a><br />
-            <a href="https://github.com/mikekinsman" title="talk">📢</a> 
-    </td>
-    <td align="center"><a href="http://github.com/mikekinsman">
-        <img src="https://github.com/mikekinsman.png" width="100px;" alt="INSERT NAME HERE
-"/><br />
-        <sub><b>INSERT NAME HERE
-</b></sub></a><br />
-            <a href="https://github.com/mikekinsman" title="talk">📢</a> 
-    </td>
-</tr></table>
+
+<td align="center">
+<a href="https://github.com/nitya">
+<img src="https://github.com/nitya.png" width="100px;" alt="Nitya Narasimhan"/><br />
+<sub><b>Nitya Narasimhan</b></sub>
+</a><br />
+<a href="https://linkedin.com/in/nityan" title="talk">📢</a>
+</td>
+
+<td align="center">
+<a href="https://github.com/bethanyjep">
+<img src="https://github.com/bethanyjep.png" width="100px;" alt="Bethany Jepchumba"/><br />
+<sub><b>Bethany Jepchumba</b></sub>
+</a>
+<br />
+<a href="https://github.com/bethanyjep" title="talk">📢</a>
+</td>
+
+</tr>
+</table>
 
 
 ## Contributing
@@ -125,3 +106,28 @@ trademarks or logos is subject to and must follow
 [Microsoft's Trademark & Brand Guidelines](https://www.microsoft.com/legal/intellectualproperty/trademarks/usage/general).
 Use of Microsoft trademarks or logos in modified versions of this project must not cause confusion or imply Microsoft sponsorship.
 Any use of third-party trademarks or logos are subject to those third-party's policies.
+
+
+<!---
+
+## Update Readme
+
+1. Fill out the content below in this file, below the banner graphic, including the session code.
+2. Please embed links to Learn with your campaign codes!
+3. Add reources for your session to the Resources and Next Steps table
+
+1. Update the Repo Info for this repo 
+    1. Click the gear icon⚙️ in the upper right.
+    1. Set a good description of this repo.
+    1. Add the technologies that you're using in this session.
+
+Colors in banner:
+Deep Purple (#30216F) - The dark purple background on the left side
+Vibrant Magenta/Pink (#E94BBF) - The bright pink areas in the middle
+Electric Blue (#2B76E5) - The blue tones on the right edge
+Medium Purple (#7C4ACD) - The transitional purple areas
+Light Pink (#F2A1E6) - The lighter pink areas in the mesh/grid pattern
+
+ Microsoft Azure's typical blue (#0078D4) and purple (#5C2D91) colors, 
+ with additional purple shade (#722ED1) for gradient effect.
+--->

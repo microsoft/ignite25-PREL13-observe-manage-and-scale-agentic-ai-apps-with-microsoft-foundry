@@ -1,0 +1,10 @@
+# ................ General Python Dependencies
+ipython
+pandas
+numpy
+python-dotenv
+
+# ................ Azure AI SDK Dependencies
+azure-identity
+azure-search-documents
+azure-ai-evaluation
