@@ -1,0 +1,38 @@
+name: Add Issues to Project and Apply Labels
+
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  add-to-project:
+    name: Add issue to project
+    runs-on: ubuntu-latest
+    steps:
+      - name: Add issue to project
+        uses: actions/add-to-project@v1.0.2
+        with:
+          project-url: ${{ vars.PROJECT_URL || 'https://github.com/orgs/microsoft/projects/869' }}
+          github-token: ${{ secrets.ADD_TO_PROJECT_PAT }}
+
+  label_issues:
+    name: Label new issues
+    runs-on: ubuntu-latest
+    steps:
+      - name: Apply default labels
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const issue = context.payload.issue;
+            const defaultLabels = ['ignite-2025', 'needs-triage'];
+            
+            // Apply labels to the issue
+            await github.rest.issues.addLabels({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: issue.number,
+              labels: defaultLabels
+            });
+            
+            console.log(`Applied labels ${defaultLabels.join(', ')} to issue #${issue.number}`);
