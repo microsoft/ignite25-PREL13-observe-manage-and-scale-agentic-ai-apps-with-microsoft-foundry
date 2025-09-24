@@ -3,8 +3,32 @@ ipython
 pandas
 numpy
 python-dotenv
+tiktoken
 
 # ................ Azure AI SDK Dependencies
 azure-identity
 azure-search-documents
 azure-ai-evaluation
+
+## Core libraries
+python-dotenv   # Environment variables
+ipykernel       # Jupyter Notebooks
+uv              # MCP Server
+
+## Data manipulation and visualization
+matplotlib==3.10.3  # For creating visualizations
+numpy==2.3.1        # For numerical computations
+pandas              # For data manipulation and analysis
+
+## ..... Setup: Product Index
+azure-search-documents==11.5.3  # For Azure AI Search
+
+
+## ..... Demo 1: Basic Fine Tuning 
+openai 
+requests 
+tiktoken 
+
+## ..... Demo 2: Distillation 
+azure-identity                 # For Azure authentication
+azure-mgmt-cognitiveservices   # For model deployment

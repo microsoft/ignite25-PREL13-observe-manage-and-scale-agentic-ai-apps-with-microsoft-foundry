@@ -419,3 +419,7 @@ FodyWeavers.xsd
 
 #mkdocs static site 
 site/*
+
+# .github
+.venv
+.github/chatmodes/
