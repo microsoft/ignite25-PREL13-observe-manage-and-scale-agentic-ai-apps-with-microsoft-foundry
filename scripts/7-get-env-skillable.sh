@@ -1,7 +1,7 @@
 #!/bin/bash
 # ============================================================================
-# Script: 00-get-env-skillable-fixed.sh
-# Description: Fixed version with better error handling and diagnostics
+# Script: 7-get-env-skillable.sh
+# Description: Auto-discover environment using rg-Ignite* resource group
 # ============================================================================
 
 set -e
@@ -18,37 +18,22 @@ WORKSPACE_ROOT="$(dirname "$SCRIPT_DIR")"
 ENV_FILE="$WORKSPACE_ROOT/.env"
 
 echo -e "${BLUE}======================================${NC}"
-echo -e "${BLUE}Environment Update Script (Fixed)${NC}"
+echo -e "${BLUE}Environment Update Script (Skillable)${NC}"
 echo -e "${BLUE}======================================${NC}\n"
 
 # ============================================================================
-# Step 1: Get Resource Group
+# Step 1: Auto-discover Resource Group with rg-Ignite prefix
 # ============================================================================
-echo -e "${YELLOW}Step 1: Determining resource group...${NC}"
+echo -e "${YELLOW}Step 1: Auto-discovering resource group...${NC}"
 
-if [ -z "$AZURE_RESOURCE_GROUP" ]; then
-    echo -e "${YELLOW}AZURE_RESOURCE_GROUP not set in environment${NC}"
-    read -p "Enter your Azure Resource Group name: " AZURE_RESOURCE_GROUP
-fi
-
-if [ -z "$AZURE_RESOURCE_GROUP" ]; then
-    echo -e "${RED}Error: Resource group name is required${NC}"
-    exit 1
-fi
-
-echo -e "${GREEN}✓ Using resource group: $AZURE_RESOURCE_GROUP${NC}\n"
-
-# ============================================================================
-# Step 2: Verify Azure CLI login
-# ============================================================================
-echo -e "${YELLOW}Step 2: Verifying Azure CLI authentication...${NC}"
-
+# Verify Azure CLI login first
 if ! az account show &>/dev/null; then
     echo -e "${RED}Error: Not logged in to Azure CLI${NC}"
     echo -e "Please run: ${BLUE}az login${NC}"
     exit 1
 fi
 
+# Get subscription info
 AZURE_SUBSCRIPTION_ID=$(az account show --query id -o tsv)
 AZURE_TENANT_ID=$(az account show --query tenantId -o tsv)
 SUBSCRIPTION_NAME=$(az account show --query name -o tsv)
@@ -57,25 +42,36 @@ echo -e "${GREEN}✓ Azure CLI authenticated${NC}"
 echo -e "  Subscription: $SUBSCRIPTION_NAME"
 echo -e "  Subscription ID: $AZURE_SUBSCRIPTION_ID\n"
 
-# ============================================================================
-# Step 3: Verify Resource Group exists
-# ============================================================================
-echo -e "${YELLOW}Step 3: Verifying resource group exists...${NC}"
+# Find resource groups with rg-Ignite prefix
+echo -e "${YELLOW}Searching for resource groups with 'rg-Ignite' prefix...${NC}"
 
-AZURE_LOCATION=$(az group show --name "$AZURE_RESOURCE_GROUP" --query location -o tsv 2>/dev/null || echo "")
+IGNITE_RGS=$(az group list --query "[?starts_with(name, 'rg-Ignite')].{name:name, location:location}" -o json)
+IGNITE_RG_COUNT=$(echo "$IGNITE_RGS" | jq length)
 
-if [ -z "$AZURE_LOCATION" ]; then
-    echo -e "${RED}Error: Resource group '$AZURE_RESOURCE_GROUP' not found${NC}"
+if [ "$IGNITE_RG_COUNT" -eq 0 ]; then
+    echo -e "${RED}Error: No resource groups found with 'rg-Ignite' prefix${NC}"
+    echo -e "${YELLOW}Available resource groups:${NC}"
+    az group list --query "[].name" -o tsv
     exit 1
+elif [ "$IGNITE_RG_COUNT" -eq 1 ]; then
+    AZURE_RESOURCE_GROUP=$(echo "$IGNITE_RGS" | jq -r '.[0].name')
+    AZURE_LOCATION=$(echo "$IGNITE_RGS" | jq -r '.[0].location')
+    echo -e "${GREEN}✓ Found resource group: $AZURE_RESOURCE_GROUP${NC}"
+else
+    echo -e "${GREEN}✓ Found $IGNITE_RG_COUNT resource groups with 'rg-Ignite' prefix:${NC}"
+    echo "$IGNITE_RGS" | jq -r '.[] | "  • \(.name) (\(.location))"'
+    echo -e "\n${YELLOW}Using the first one:${NC}"
+    AZURE_RESOURCE_GROUP=$(echo "$IGNITE_RGS" | jq -r '.[0].name')
+    AZURE_LOCATION=$(echo "$IGNITE_RGS" | jq -r '.[0].location')
+    echo -e "${GREEN}  → $AZURE_RESOURCE_GROUP${NC}"
 fi
 
-echo -e "${GREEN}✓ Resource group found: $AZURE_RESOURCE_GROUP${NC}"
 echo -e "  Location: $AZURE_LOCATION\n"
 
 # ============================================================================
-# Step 3.5: List ALL resources for diagnostics
+# Step 2: List ALL resources for diagnostics
 # ============================================================================
-echo -e "${YELLOW}Step 3.5: Listing all resources in resource group...${NC}"
+echo -e "${YELLOW}Step 2: Listing all resources in resource group...${NC}"
 
 ALL_RESOURCES=$(az resource list --resource-group "$AZURE_RESOURCE_GROUP" --query "[].{name:name, type:type}" -o json)
 RESOURCE_COUNT=$(echo "$ALL_RESOURCES" | jq length)
@@ -85,9 +81,9 @@ echo "$ALL_RESOURCES" | jq -r '.[] | "  • \(.type): \(.name)"'
 echo ""
 
 # ============================================================================
-# Step 4: Discover Azure OpenAI resources (FIXED for Cognitive Services)
+# Step 3: Discover Azure OpenAI resources (FIXED for Cognitive Services)
 # ============================================================================
-echo -e "${YELLOW}Step 4: Discovering Azure OpenAI resources...${NC}"
+echo -e "${YELLOW}Step 3: Discovering Azure OpenAI resources...${NC}"
 
 # Look for Cognitive Services accounts with kind='OpenAI' OR kind='AIServices'
 AOAI_RESOURCES=$(az resource list \
@@ -98,7 +94,7 @@ AOAI_RESOURCES=$(az resource list \
 
 AOAI_COUNT=$(echo "$AOAI_RESOURCES" | jq length 2>/dev/null || echo "0")
 
-# If found, get full details including endpoint
+# If found, get full details including endpoint and keys
 if [ "$AOAI_COUNT" -gt 0 ]; then
     AOAI_NAME=$(echo "$AOAI_RESOURCES" | jq -r '.[0].name')
     AOAI_KIND=$(echo "$AOAI_RESOURCES" | jq -r '.[0].kind')
@@ -111,10 +107,22 @@ if [ "$AOAI_COUNT" -gt 0 ]; then
         -o json 2>/dev/null || echo "{}")
     
     AZURE_OPENAI_ENDPOINT=$(echo "$AOAI_DETAILS" | jq -r '.endpoint // ""')
+    
+    # Get API key for Azure OpenAI
+    echo "  Retrieving API keys..."
+    AZURE_OPENAI_API_KEY=$(az cognitiveservices account keys list \
+        --name "$AOAI_NAME" \
+        --resource-group "$AZURE_RESOURCE_GROUP" \
+        --query "key1" \
+        -o tsv 2>/dev/null || echo "")
 
     echo -e "${GREEN}✓ Found Azure OpenAI (Cognitive Services): $AOAI_NAME${NC}"
     echo -e "  Kind: $AOAI_KIND"
     echo -e "  Endpoint: $AZURE_OPENAI_ENDPOINT"
+    
+    if [ -n "$AZURE_OPENAI_API_KEY" ]; then
+        echo -e "  API Key: ${AZURE_OPENAI_API_KEY:0:8}***"
+    fi
     
     # Get deployments
     DEPLOYMENTS=$(az cognitiveservices account deployment list \
@@ -133,7 +141,7 @@ if [ "$AOAI_COUNT" -gt 0 ]; then
     AZURE_AI_AGENT_DEPLOYMENT_CAPACITY=$(echo "$DEPLOYMENTS" | jq -r '[.[] | select(.model | test("gpt-4"; "i"))] | .[0].capacity // "10"')
     
     AZURE_AI_EMBED_DEPLOYMENT_NAME=$(echo "$DEPLOYMENTS" | jq -r '[.[] | select(.model | test("embedding|embed"; "i"))] | .[0].name // ""')
-    AZURE_AI_EMBED_MODEL_NAME=$(echo "$DEPLOYMENTS" | jq -r '[.[] | select(.model | test("embedding|embed"; "i"))] | .[0].model // "text-embedding-ada-002"')
+    AZURE_AI_EMBED_MODEL_NAME=$(echo "$DEPLOYMENTS" | jq -r '[.[] | select(.model | test("embedding|embed"; "i"))] | .[0].model // "text-embedding-3-large"')
     AZURE_AI_EMBED_MODEL_VERSION=$(echo "$DEPLOYMENTS" | jq -r '[.[] | select(.model | test("embedding|embed"; "i"))] | .[0].version // "2"')
     AZURE_AI_EMBED_DEPLOYMENT_CAPACITY=$(echo "$DEPLOYMENTS" | jq -r '[.[] | select(.model | test("embedding|embed"; "i"))] | .[0].capacity // "10"')
 else
@@ -143,21 +151,22 @@ else
     
     AOAI_NAME=""
     AZURE_OPENAI_ENDPOINT=""
+    AZURE_OPENAI_API_KEY=""
     AZURE_AI_AGENT_DEPLOYMENT_NAME="gpt-4"
     AZURE_AI_AGENT_MODEL_NAME="gpt-4"
     AZURE_AI_AGENT_MODEL_VERSION="2024-05-13"
     AZURE_AI_AGENT_DEPLOYMENT_CAPACITY="10"
-    AZURE_AI_EMBED_DEPLOYMENT_NAME="text-embedding-ada-002"
-    AZURE_AI_EMBED_MODEL_NAME="text-embedding-ada-002"
+    AZURE_AI_EMBED_DEPLOYMENT_NAME="text-embedding-3-large"
+    AZURE_AI_EMBED_MODEL_NAME="text-embedding-3-large"
     AZURE_AI_EMBED_MODEL_VERSION="2"
     AZURE_AI_EMBED_DEPLOYMENT_CAPACITY="10"
 fi
 echo ""
 
 # ============================================================================
-# Step 5: Discover Azure AI Search resources
+# Step 4: Discover Azure AI Search resources
 # ============================================================================
-echo -e "${YELLOW}Step 5: Discovering Azure AI Search resources...${NC}"
+echo -e "${YELLOW}Step 4: Discovering Azure AI Search resources...${NC}"
 
 SEARCH_SERVICES=$(az search service list \
     --resource-group "$AZURE_RESOURCE_GROUP" \
@@ -172,6 +181,18 @@ if [ "$SEARCH_COUNT" -gt 0 ]; then
     
     echo -e "${GREEN}✓ Found Azure AI Search: $SEARCH_NAME${NC}"
     echo -e "  Endpoint: $AZURE_AI_SEARCH_ENDPOINT"
+    
+    # Get API key for Azure AI Search
+    echo "  Retrieving API keys..."
+    AZURE_SEARCH_API_KEY=$(az search admin-key show \
+        --service-name "$SEARCH_NAME" \
+        --resource-group "$AZURE_RESOURCE_GROUP" \
+        --query "primaryKey" \
+        -o tsv 2>/dev/null || echo "")
+    
+    if [ -n "$AZURE_SEARCH_API_KEY" ]; then
+        echo -e "  API Key: ${AZURE_SEARCH_API_KEY:0:8}***"
+    fi
     
     # Try to get indexes
     INDEXES=$(az search index list \
@@ -191,14 +212,15 @@ else
     echo -e "${YELLOW}⚠ No Azure AI Search resources found${NC}"
     SEARCH_NAME=""
     AZURE_AI_SEARCH_ENDPOINT=""
+    AZURE_SEARCH_API_KEY=""
     AZURE_AI_SEARCH_INDEX_NAME="zava-products"
 fi
 echo ""
 
 # ============================================================================
-# Step 6: Discover AI Foundry Project (FIXED for AI Services)
+# Step 5: Discover AI Foundry Project (FIXED for AI Services)
 # ============================================================================
-echo -e "${YELLOW}Step 6: Discovering AI Foundry Project...${NC}"
+echo -e "${YELLOW}Step 5: Discovering AI Foundry Project...${NC}"
 
 # First try: Look for AI Projects as sub-resources under Cognitive Services
 AI_PROJECT_RESOURCES=$(az resource list \
@@ -369,16 +391,17 @@ SERVICE_API_AND_FRONTEND_IMAGE_NAME="${SERVICE_API_AND_FRONTEND_IMAGE_NAME:-cont
 USE_APPLICATION_INSIGHTS="${USE_APPLICATION_INSIGHTS:-true}"
 ENABLE_AZURE_MONITOR_TRACING="${ENABLE_AZURE_MONITOR_TRACING:-true}"
 AZURE_TRACING_GEN_AI_CONTENT_RECORDING_ENABLED="${AZURE_TRACING_GEN_AI_CONTENT_RECORDING_ENABLED:-true}"
+AZURE_OPENAI_API_VERSION="${AZURE_OPENAI_API_VERSION:-2025-02-01-preview}"
 
 # Generate new .env
 cat > "$ENV_FILE" << EOF
 # ============================================================================
 # Azure Environment Variables
-# Auto-generated by 00-get-env-skillable-fixed.sh on $(date)
+# Auto-generated by 7-get-env-skillable.sh on $(date)
 # Resource Group: $AZURE_RESOURCE_GROUP
 # ============================================================================
 
-# .... Azure Environment Variables
+# .... Azure Environment Variables (from AZD)
 AZURE_ENV_NAME="$AZURE_ENV_NAME"
 AZURE_LOCATION="$AZURE_LOCATION"
 AZURE_RESOURCE_GROUP="$AZURE_RESOURCE_GROUP"
@@ -386,24 +409,20 @@ AZURE_SUBSCRIPTION_ID="$AZURE_SUBSCRIPTION_ID"
 AZURE_TENANT_ID="$AZURE_TENANT_ID"
 
 # .... Azure AI Foundry
-AZURE_OPENAI_API_KEY=
+AZURE_OPENAI_API_KEY="$AZURE_OPENAI_API_KEY"
 AZURE_OPENAI_ENDPOINT="$AZURE_OPENAI_ENDPOINT"
-AZURE_OPENAI_API_VERSION="2025-02-01-preview"
+AZURE_OPENAI_API_VERSION="$AZURE_OPENAI_API_VERSION"
 AZURE_OPENAI_DEPLOYMENT="$AZURE_AI_AGENT_DEPLOYMENT_NAME"
 
-# .... Azure AI Foundry Resources
+# .... Azure AI Foundry Resources (from Azure portal)
 AZURE_AI_FOUNDRY_NAME="$AOAI_NAME"
 AZURE_AI_PROJECT_NAME="$AZURE_AI_PROJECT_NAME"
 AZURE_EXISTING_AIPROJECT_ENDPOINT="$AZURE_EXISTING_AIPROJECT_ENDPOINT"
 AZURE_EXISTING_AIPROJECT_RESOURCE_ID="$AZURE_EXISTING_AIPROJECT_RESOURCE_ID"
 
-# .... Azure AI Search
-AZURE_SEARCH_ENDPOINT="$AZURE_AI_SEARCH_ENDPOINT"
-AZURE_AISEARCH_ENDPOINT="$AZURE_AI_SEARCH_ENDPOINT"
+# .... Azure AI Search (Required for add-product-index script)
 AZURE_AI_SEARCH_ENDPOINT="$AZURE_AI_SEARCH_ENDPOINT"
-AZURE_SEARCH_API_KEY=
-AZURE_SEARCH_INDEX_NAME="$AZURE_AI_SEARCH_INDEX_NAME"
-AZURE_AISEARCH_INDEX="$AZURE_AI_SEARCH_INDEX_NAME"
+AZURE_SEARCH_API_KEY="$AZURE_SEARCH_API_KEY"
 AZURE_AI_SEARCH_INDEX_NAME="$AZURE_AI_SEARCH_INDEX_NAME"
 
 # .... Agent Configuration
@@ -419,7 +438,7 @@ AZURE_AI_EMBED_MODEL_NAME="$AZURE_AI_EMBED_MODEL_NAME"
 AZURE_AI_EMBED_MODEL_VERSION=$AZURE_AI_EMBED_MODEL_VERSION
 AZURE_AI_EMBED_DEPLOYMENT_CAPACITY=$AZURE_AI_EMBED_DEPLOYMENT_CAPACITY
 AZURE_AI_EMBED_DEPLOYMENT_SKU="Standard"
-AZURE_AI_EMBED_DIMENSIONS=1536
+AZURE_AI_EMBED_DIMENSIONS=3072
 AZURE_AI_EMBED_MODEL_FORMAT="OpenAI"
 
 # .... Container Apps & Registry
@@ -437,6 +456,20 @@ ENABLE_AZURE_MONITOR_TRACING="$ENABLE_AZURE_MONITOR_TRACING"
 AZURE_TRACING_GEN_AI_CONTENT_RECORDING_ENABLED="$AZURE_TRACING_GEN_AI_CONTENT_RECORDING_ENABLED"
 APPLICATIONINSIGHTS_CONNECTION_STRING="$APPLICATIONINSIGHTS_CONNECTION_STRING"
 APPLICATIONINSIGHTS_INSTRUMENTATION_KEY="$APPLICATIONINSIGHTS_INSTRUMENTATION_KEY"
+
+# .... Tracing Lab (Lab 5)
+API_HOST="$SERVICE_API_URI"
+APPLICATION_INSIGHTS_CONNECTION_STRING="$APPLICATIONINSIGHTS_CONNECTION_STRING"
+AZURE_OPENAI_VERSION="$AZURE_OPENAI_API_VERSION"
+AZURE_OPENAI_CHAT_DEPLOYMENT="$AZURE_AI_AGENT_DEPLOYMENT_NAME"
+OPENAI_API_KEY="$AZURE_OPENAI_API_KEY"
+
+# .... Missing variables from azd .env
+ADDITIONAL_MODEL_DEPLOYMENTS=""
+AZURE_AI_SEARCH_CONNECTION_NAME=""
+AZURE_EXISTING_AGENT_ID=""
+SEARCH_CONNECTION_ID=""
+SERVICE_API_AND_FRONTEND_RESOURCE_EXISTS="false"
 EOF
 
 echo -e "${GREEN}✓ Generated new .env file${NC}\n"

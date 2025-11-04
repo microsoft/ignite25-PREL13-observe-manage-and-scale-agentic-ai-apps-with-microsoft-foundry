@@ -9,7 +9,7 @@ Usage:
     python add-product-index.py [--data-file path/to/add-products.csv] [--max-products N] [--skip-rbac]
 
 Environment Variables Required:
-    AZURE_AISEARCH_ENDPOINT - Azure AI Search service endpoint
+    AZURE_AI_SEARCH_ENDPOINT - Azure AI Search service endpoint
     AZURE_OPENAI_ENDPOINT - Azure OpenAI service endpoint
     AZURE_AI_EMBED_DEPLOYMENT_NAME - Azure OpenAI embedding model deployment name
     
@@ -115,7 +115,7 @@ def resolve_data_file_path(data_file_arg):
 
 def check_environment_variables():
     """Check that required environment variables are set."""
-    required_vars = ["AZURE_AISEARCH_ENDPOINT", "AZURE_OPENAI_ENDPOINT", "AZURE_AI_EMBED_DEPLOYMENT_NAME"]
+    required_vars = ["AZURE_AI_SEARCH_ENDPOINT", "AZURE_OPENAI_ENDPOINT", "AZURE_AI_EMBED_DEPLOYMENT_NAME"]
     missing_vars = []
     
     for var in required_vars:
@@ -218,7 +218,7 @@ def create_index_definition(name: str) -> SearchIndex:
             type=SearchFieldDataType.Collection(SearchFieldDataType.Single),
             searchable=True,
             # Size of the vector created by the text-embedding-3-large model.
-            vector_search_dimensions=1536,
+            vector_search_dimensions=3072,
             vector_search_profile_name="myHnswProfile",
         ),
     ]
@@ -406,7 +406,7 @@ def main():
         print("⊘ Skipping RBAC update (--skip-rbac flag set)")
     
     # Get configuration from environment
-    search_endpoint = os.environ["AZURE_AISEARCH_ENDPOINT"]
+    search_endpoint = os.environ["AZURE_AI_SEARCH_ENDPOINT"]
     index_name = os.environ["AZURE_AISEARCH_INDEX"]
     
     print(f"\nConfiguration:")

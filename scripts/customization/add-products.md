@@ -37,7 +37,7 @@ Create a `.env` file in the repository root with these variables:
 
 ```bash
 # Azure AI Search
-AZURE_AISEARCH_ENDPOINT=https://your-search-service.search.windows.net
+AZURE_AI_SEARCH_ENDPOINT=https://your-search-service.search.windows.net
 
 # Azure OpenAI
 AZURE_OPENAI_ENDPOINT=https://your-openai-service.openai.azure.com
