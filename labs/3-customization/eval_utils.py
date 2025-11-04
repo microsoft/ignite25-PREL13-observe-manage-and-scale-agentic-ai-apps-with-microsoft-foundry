@@ -242,16 +242,14 @@ def get_eval_run_output_items(client: openai.Client, eval_id: str, run_id: str) 
         list: A list of scores for the output items.
     """
     scores = []
-
     try:
         response = client.evals.runs.output_items.list(run_id=run_id, eval_id=eval_id)
         for page in response.iter_pages():
             for item in page.data:
                 for result in item.results:
-                    score = result.get("score")
+                    score = result.score if hasattr(result, 'score') else None
                     if score is not None:
                         scores.append(score)
     except Exception as e:
         print(f"Failed to fetch output items for run {run_id}. Error: {e}")
-
     return scores

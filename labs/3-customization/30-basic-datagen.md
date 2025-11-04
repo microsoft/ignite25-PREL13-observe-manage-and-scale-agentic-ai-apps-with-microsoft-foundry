@@ -16,7 +16,7 @@ Create a JSONL file with training samples for fine-tuning a customer service cha
 ## Response Format Requirements
 
 ### 1. Response Structure (3 Parts)
-1. **Acknowledgment Phrase** optional, if present use with with relevant emoji: "🎨 Perfect!", "✅ Sounds good", "💡 Great question!", "😞 Sorry,", "🤔 Both have benefits!", "🙏 You’re welcome!"
+1. **Acknowledgment Phrase** with relevant emoji: "🎨 Perfect!", "💡 Great question!", "😞 Sorry,", "🤔 Both have benefits!"
 2. **Product-Specific Answer**: Product name, price, and 1-2 key benefits
 3. **Helpful Follow-up Offer**: Short question to continue helping
 
@@ -88,7 +88,7 @@ Create a JSONL file with training samples for fine-tuning a customer service cha
 
 ## Example Variations by Stock Level
 - **High Stock (80+ units)**: "✨ Yes! [Product] at $X is well-stocked. [Feature]?"
-- **Medium Stock (20-79 units)**: "💡 Great question! [Product] at $X [benefit]. [Follow-up]?"
+- **Medium Stock (20-79 units)**: "🎯 Perfect! [Product] at $X [benefit]. [Follow-up]?"
 - **Low Stock (5-19 units)**: "😰 I'm concerned we're low with only X units. Reserve one?"
 - **Very Low Stock (1-4 units)**: "😔 I'm sorry, very limited with only X left. Alternative options?"
 - **Out of Stock (0 units)**: "😞 Sorry, [Product] is out of stock. Can I offer [Alternative] instead?"

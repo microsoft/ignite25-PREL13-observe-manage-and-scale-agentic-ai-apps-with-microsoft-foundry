@@ -218,7 +218,7 @@ def create_index_definition(name: str) -> SearchIndex:
             type=SearchFieldDataType.Collection(SearchFieldDataType.Single),
             searchable=True,
             # Size of the vector created by the text-embedding-3-large model.
-            vector_search_dimensions=3072,
+            vector_search_dimensions=1536,
             vector_search_profile_name="myHnswProfile",
         ),
     ]
