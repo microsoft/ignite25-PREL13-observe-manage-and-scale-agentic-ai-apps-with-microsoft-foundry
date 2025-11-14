@@ -1,5 +1,5 @@
 # ................ Documentation
-mkdocs-material
+mkdocs-material==9.6.20
 
 # Install requirements specified for labs
 

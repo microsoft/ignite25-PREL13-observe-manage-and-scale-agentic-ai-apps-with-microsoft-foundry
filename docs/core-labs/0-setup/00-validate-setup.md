@@ -1,49 +1,65 @@
 # Validate Setup
 
-Ensure your Azure AI Foundry environment is properly configured before proceeding with the workshop labs.
+## 1. Objective
 
-## Description
+Ensure your Azure AI Foundry environment is properly configured and all required resources are accessible before proceeding with the workshop labs.
 
-This notebook validates that all required Azure resources are provisioned and accessible, including the AI Foundry project, model deployments, and service connections.
+## 2. Scenario
 
-## Learning Objectives
+Before building Cora, Zava's AI customer service assistant, you need to verify that all Azure resources are provisioned correctly. This includes confirming that your Azure AI Foundry project exists, model deployments are accessible, and service connections (like Azure AI Search) are functioning. Think of this as a pre-flight check—validating infrastructure before development begins ensures a smooth workshop experience.
 
-- Authenticate to Azure using appropriate credentials
-- Verify Azure AI Foundry project configuration
-- Confirm model deployments are accessible
-- Test connections to Azure AI Search and other services
+## 3. Instructions
 
-## Instructions
+!!! lab "NOTEBOOK: Validate Setup"
 
-### Open the Notebook
+    **📓 Open:** [`labs/0-setup/00-validate-setup.ipynb`](https://github.com/microsoft/ignite25-PDY123-learn-how-to-observe-manage-and-scale-agentic-ai-apps-using-azure/blob/main/labs/0-setup/00-validate-setup.ipynb)
+    
+    **🚀 Run the notebook:**
+    
+    1. Select the Python kernel when prompted
+    2. Clear all outputs (optional, for a clean start)
+    3. Run all cells sequentially
+    4. Verify all checks pass with ✅
 
-Navigate to the lab folder and open:
+**What you'll learn in this lab:**
 
-**📓 Notebook:** [`labs/0-setup/00-validate-setup.ipynb`](https://github.com/microsoft/ignite25-PDY123-learn-how-to-observe-manage-and-scale-agentic-ai-apps-using-azure/blob/main/labs/0-setup/00-validate-setup.ipynb)
+1. Authenticate to Azure using DefaultAzureCredential
+2. Verify Azure AI Foundry project configuration and accessibility
+3. Confirm required model deployments are available
+4. Test connections to Azure AI Search and other dependent services
+5. Validate Python SDK installations and environment configuration
 
-### Run All Cells
+## 4. Ask Copilot
 
-Execute each cell sequentially and verify all checks pass with ✅
+!!! prompt "OPTIONAL: Build Your Intuition"
+    Open GitHub Copilot Chat in VS Code by pressing `Ctrl+Alt+I` (Windows/Linux) or `Cmd+Shift+I` (Mac), then try these prompts to build your own intuition on this topic - or write your own. To copy a prompt, hover over the code block below to see the _copy to clipboard_ icon.
 
-## Copilot Prompts
+1. Ask for Guidance:
 
-```
-Explain how DefaultAzureCredential authentication works
-```
+    ```title="" linenums="0"
+    Show me how to authenticate to Azure using DefaultAzureCredential and verify my Azure AI Foundry project connection
+    ```
 
-```
-Show me how to list all model deployments in an Azure AI Foundry project using Python
-```
+1. Ask for Explanations:
 
-```
-Help me troubleshoot connection errors to Azure AI Search
-```
+    ```title="" linenums="0"
+    Explain the Azure AI Foundry project structure and how it relates to hubs, workspaces, and deployments
+    ```
 
-## Related Resources
+1. Ask for Specific Help:
+
+    ```title="" linenums="0"
+    Help me troubleshoot authentication errors when connecting to Azure AI Foundry from Python
+    ```
+
+## 5. Related Resources
 
 - 📘 [Azure AI Foundry SDK Documentation](https://learn.microsoft.com/python/api/overview/azure/ai)
 - 📘 [Authentication with Azure Identity](https://learn.microsoft.com/python/api/overview/azure/identity-readme)
+- 📘 [Azure AI Foundry Project Setup](https://learn.microsoft.com/azure/ai-foundry/how-to/create-projects)
 
----
+## 6. Key Takeaways
 
-[← Back to Setup Overview](index.md){ .md-button }
+- DefaultAzureCredential provides flexible authentication across local development and Azure environments
+- Azure AI Foundry projects organize resources including models, connections, and deployments in a unified workspace
+- Pre-deployment validation prevents runtime errors and ensures smooth development workflows

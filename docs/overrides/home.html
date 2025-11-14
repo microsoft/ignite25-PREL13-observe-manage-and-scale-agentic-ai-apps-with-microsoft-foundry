@@ -3,111 +3,157 @@
 {% block tabs %}
 {{ super() }}
 <style>
-  .md-sidebar--primary {
-    display: none;
-  }
-  .md-sidebar--secondary {
-    display: none !important;
-  }
-  .md-content {
-    max-width: 100%;
-    margin: 0 auto;
-  }
-  .md-main__inner {
-    margin: 0;
-    max-width: 100%;
-  }
-  .md-content__inner {
-    margin: 0 auto;
-    max-width: 100%;
-    padding: 2rem;
-  }
+  /* Hide sidebars and enable full-width layout */
+  .md-sidebar--primary,
+  .md-sidebar--secondary { display: none; }
+  .md-content,
+  .md-main__inner { max-width: 100%; margin: 0; }
+  .md-content__inner { max-width: 100%; padding: 2rem; }
   
-  /* Container for hero and labs with responsive max-width */
-  .hero-banner,
-  .labs-grid {
-    max-width: 1400px;
-    margin-left: auto;
-    margin-right: auto;
-  }
+  /* Enhance navigation tab contrast */
+  .md-tabs__link { color: rgba(255, 255, 255, 0.9) !important; }
+  .md-tabs__link:hover,
+  .md-tabs__link--active { color: #ffffff !important; }
   
-  /* Responsive padding */
+  /* Responsive mobile padding */
   @media screen and (max-width: 768px) {
-    .md-content__inner {
-      padding: 1rem;
-    }
+    .md-content__inner { padding: 1rem; }
   }
 </style>
 {% endblock %}
 
-{% block site_nav %}
-  <!-- Hide navigation sidebar on home page -->
-{% endblock %}
-
-{% block toc %}
-  <!-- Hide TOC sidebar on home page -->
-{% endblock %}
+{% block site_nav %}{% endblock %}
+{% block toc %}{% endblock %}
 
 {% block content %}
 <div class="hero-banner">
   <h3>Learning Objectives</h3>
   <ul class="objectives-list">
-    <li>Implement and orchestrate multi-agent systems using Azure AI Agent Service and Microsoft Agent Framework</li>
-    <li>Select, customize, and fine-tune AI models to match task complexity and business requirements</li>
-    <li>Evaluate AI application quality, safety, and agent performance using Azure AI evaluation tools</li>
-    <li>Monitor agentic applications with tracing, telemetry, and observability best practices</li>
-    <li>Deploy and scale production-ready agentic AI solutions on Azure AI Foundry</li>
-    <li>Apply governance strategies for responsible AI development and compliance</li>
+    <li>Deploy Azure AI infrastructure using AZD templates for rapid environment provisioning</li>
+    <li>Build and orchestrate AI agents with Azure AI Agent Service and evaluate model performance</li>
+    <li>Customize models through fine-tuning and distillation for cost-effective specialized behavior</li>
+    <li>Implement end-to-end observability with OpenTelemetry tracing and Azure Monitor integration</li>
+    <li>Operationalize production-ready AI solutions with evaluation, safety, and deployment workflows</li>
   </ul>
 </div>
 
 <div class="labs-grid">
-  <a href="core-labs/0-setup/" class="lab-card">
-    <div class="lab-number">00</div>
+  <a href="core-labs/0-setup/" class="lab-card setup-lab">
+    <div class="lab-number lab-0">0</div>
     <h3>Setup & Validation</h3>
-    <p>Validate infrastructure, understand the Zava scenario, and prepare your development environment</p>
+    <p>Validate Azure infrastructure, understand the Zava scenario, and prepare development environment</p>
   </a>
   
-  <a href="core-labs/1-agents/" class="lab-card">
-    <div class="lab-number">01</div>
-    <h3>Agent Architecture</h3>
-    <p>Create agents using Azure AI Agent Service and orchestrate multi-agent workflows with Agent Framework</p>
+  <a href="core-labs/1-agents/11-agent-service/" class="lab-card core-lab">
+    <div class="lab-number lab-1">1.1</div>
+    <h3>Build Cora Retail Agent</h3>
+    <p>Build Cora to help Zava customers find hardware products, check inventory, and get personalized assistance</p>
   </a>
   
-  <a href="core-labs/2-models/" class="lab-card">
-    <div class="lab-number">02</div>
-    <h3>Model Context</h3>
-    <p>Select appropriate models, generate synthetic datasets, and evaluate model performance</p>
+  <a href="core-labs/2-models/21-simulate-dataset/" class="lab-card core-lab">
+    <div class="lab-number lab-2">2.1</div>
+    <h3>Simulate Dataset</h3>
+    <p>Generate synthetic query-response pairs from Zava's product catalog for robust evaluation</p>
   </a>
   
-  <a href="core-labs/3-customization/" class="lab-card">
-    <div class="lab-number">03</div>
-    <h3>Model Customization</h3>
-    <p>Fine-tune models for specific behaviors, create custom evaluators, and apply distillation techniques</p>
+  <a href="core-labs/2-models/22-evaluate-models/" class="lab-card core-lab">
+    <div class="lab-number lab-2">2.2</div>
+    <h3>Evaluate Models</h3>
+    <p>Compare GPT-4o, GPT-4o-mini, and GPT-4 to find the best model for Zava's retail use case</p>
   </a>
   
-  <a href="core-labs/4-evaluation/" class="lab-card">
-    <div class="lab-number">04</div>
-    <h3>Evaluation Metrics</h3>
-    <p>Run evaluations for quality, safety, and agent performance using Azure AI evaluation SDK</p>
+  <a href="core-labs/3-customization/31-basic-finetuning/" class="lab-card core-lab">
+    <div class="lab-number lab-3">3.1</div>
+    <h3>Basic Fine-Tuning</h3>
+    <p>Customize model tone and style for Zava's polite, factual, helpful customer service approach</p>
   </a>
   
-  <a href="core-labs/5-tracing/" class="lab-card">
-    <div class="lab-number">05</div>
-    <h3>Tracing & Telemetry</h3>
-    <p>Implement observability with tracing, collect span snapshots, and analyze agent sessions</p>
+  <a href="core-labs/3-customization/32-custom-grader/" class="lab-card core-lab">
+    <div class="lab-number lab-3">3.2</div>
+    <h3>Custom Grader</h3>
+    <p>Create custom evaluator to measure Cora's tone and style quality for Zava customers</p>
   </a>
   
-  <a href="core-labs/6-deployment/" class="lab-card">
-    <div class="lab-number">06</div>
-    <h3>Deployment & Insights</h3>
-    <p>Deploy solutions using developer tier and monitor performance in production</p>
+  <a href="core-labs/3-customization/33-distill-finetuning/" class="lab-card core-lab">
+    <div class="lab-number lab-3">3.3</div>
+    <h3>Distill Fine-Tuning</h3>
+    <p>Transfer Zava-specific knowledge from GPT-4 to smaller GPT-4.1-nano for cost-efficiency</p>
   </a>
   
-  <a href="core-labs/7-teardown/" class="lab-card">
-    <div class="lab-number">07</div>
-    <h3>Teardown & Cleanup</h3>
-    <p>Clean up Azure resources and properly decommission your development environment</p>
+  <a href="core-labs/4-evaluation/41-first-evaluation/" class="lab-card core-lab">
+    <div class="lab-number lab-4">4.1</div>
+    <h3>First Evaluation Run</h3>
+    <p>Evaluate Cora's responses to Zava customer queries using quality and safety metrics</p>
+  </a>
+  
+  <a href="core-labs/4-evaluation/44-evaluate-agents/" class="lab-card core-lab">
+    <div class="lab-number lab-4">4.4</div>
+    <h3>Evaluate Agents</h3>
+    <p>Measure Cora's intent recognition, tool selection, and task adherence in multi-step workflows</p>
+  </a>
+  
+  <a href="core-labs/5-tracing/51-trace-cora-retail-agent/" class="lab-card core-lab">
+    <div class="lab-number lab-5">5.1</div>
+    <h3>Trace Cora Agent</h3>
+    <p>Instrument Cora with OpenTelemetry to monitor tool invocations and export to Azure Monitor</p>
+  </a>
+  
+  <a href="core-labs/6-deployment/60-deployment/" class="lab-card core-lab">
+    <div class="lab-number lab-6">6.0</div>
+    <h3>Deployment</h3>
+    <p>Deploy Zava's fine-tuned model to Azure AI Foundry for production use</p>
+  </a>
+</div>
+
+<h2 style="max-width: 1400px; margin: 3rem auto 1.5rem auto; padding: 0 2rem; font-size: 1.75rem; font-weight: 600;">More Labs</h2>
+
+<div class="labs-grid">
+  <a href="more-labs/1-agents/12-agent-framework/" class="lab-card more-lab">
+    <div class="lab-number lab-1">1.2</div>
+    <h3>Agent Framework Orchestration</h3>
+    <p>Build specialized inventory and customer service agents working together for Zava</p>
+  </a>
+  
+  <a href="more-labs/4-evaluation/42-evaluate-quality/" class="lab-card more-lab">
+    <div class="lab-number lab-4">4.2</div>
+    <h3>Evaluate Quality</h3>
+    <p>Deep dive into AI response quality using groundedness, relevance, coherence, and fluency evaluators</p>
+  </a>
+  
+  <a href="more-labs/4-evaluation/43-evaluate-safety/" class="lab-card more-lab">
+    <div class="lab-number lab-4">4.3</div>
+    <h3>Evaluate Safety</h3>
+    <p>Assess content safety risks including hate, violence, sexual content, and jailbreak vulnerabilities</p>
+  </a>
+  
+  <a href="more-labs/5-tracing/50-collect-span-snapshots/" class="lab-card more-lab">
+    <div class="lab-number lab-5">5.0</div>
+    <h3>Collect Span Snapshots</h3>
+    <p>Capture agent spans locally with in-memory exporter for validation before production</p>
+  </a>
+  
+  <a href="more-labs/5-tracing/50-trace-agent-session/" class="lab-card more-lab">
+    <div class="lab-number lab-5">5.0</div>
+    <h3>Trace Agent Session</h3>
+    <p>Emit GenAI-compliant spans for agent creation, invocation, and tool execution workflows</p>
+  </a>
+  
+  <a href="more-labs/5-tracing/51-openai-weekend-planner/" class="lab-card more-lab">
+    <div class="lab-number lab-5">5.1</div>
+    <h3>OpenAI Weekend Planner</h3>
+    <p>Instrument Azure OpenAI Agents workflow with automatic GenAI telemetry for weekend planning</p>
+  </a>
+  
+  <a href="more-labs/5-tracing/52-langchain-weekend-planner/" class="lab-card more-lab">
+    <div class="lab-number lab-5">5.2</div>
+    <h3>LangChain Weekend Planner</h3>
+    <p>Capture LangChain agent telemetry using Azure AI OpenTelemetry tracer for weekend planning</p>
+  </a>
+  
+  <a href="more-labs/5-tracing/53-langgraph-music-router/" class="lab-card more-lab">
+    <div class="lab-number lab-5">5.3</div>
+    <h3>LangGraph Music Router</h3>
+    <p>Stream LangGraph workflow with tool routing and GenAI telemetry for music playback control</p>
   </a>
 </div>
 {% endblock %}

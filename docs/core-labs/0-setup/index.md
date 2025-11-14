@@ -53,14 +53,7 @@ The notebook will verify:
 
 Follow the notebook cells sequentially and ensure all checks pass with ✅.
 
-### Step 3: Review the Zava Scenario
-
-Read the [Zava Scenario](scenario.md) page to understand:
-- Business requirements for the customer service chatbot
-- Three-agent architecture (QA, Inventory, Loyalty)
-- Key technical challenges you'll address in the labs
-
-### Step 4: Environment Setup (Self-Guided Only)
+### Step 3: Environment Setup (Self-Guided Only)
 
 If you're running self-guided, you may need to run setup scripts:
 
@@ -124,7 +117,6 @@ After completing this lab, you should see:
 - 📘 [Azure AI Foundry Documentation](https://learn.microsoft.com/azure/ai-studio/)
 - 📘 [Quickstart: Get Started with Azure AI Foundry](https://learn.microsoft.com/azure/ai-studio/quickstart)
 - 📘 [Azure AI SDK for Python](https://learn.microsoft.com/python/api/overview/azure/ai)
-- 📄 [Zava Scenario Details](scenario.md)
 - 📄 [Workshop Outline](../outline.md)
 
 ## Next Steps
@@ -133,7 +125,7 @@ Once you've successfully validated your environment, proceed to:
 
 After completing this lab:
 
-**[Lab 1: Agent Architecture →](../1-agents/index.md)**
+**[Lab 1: Agent Architecture →](../1-agents/11-agent-service.md)**
 
 Build your first agents using Azure AI Agent Service and Microsoft Agent Framework!
 

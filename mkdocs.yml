@@ -63,7 +63,7 @@ theme:
   # Theme Features ...............................................
   features:
     - navigation.instant
-    - #navigation.expand             # sidebar collapsible sections open
+    - navigation.expand             # sidebar collapsible sections open
     - navigation.instant.progress   # load progress indicator
     - navigation.tracking           # tracks anchor tags in URL
     - navigation.tabs               # tabbed on desktop, single in mobile    
@@ -120,34 +120,37 @@ nav:
   - Core Labs:
     - Overview: core-labs/index.md
     - Workshop Outline: core-labs/outline.md
-    - 0. Setup & Validation:
+    - Lab 0. Setup & Validation:
       - Overview: core-labs/0-setup/index.md
-      - Zava Scenario: core-labs/0-setup/scenario.md
       - Validate Setup: core-labs/0-setup/00-validate-setup.md
-    - 1. Agent Architecture:
-      - Overview: core-labs/1-agents/index.md
-      - Agent Service Creation: core-labs/1-agents/11-agent-service.md
-      - Agent Framework Orchestration: core-labs/1-agents/12-agent-framework.md
-    - 2. Model Context:
-      - Overview: core-labs/2-models/index.md
-      - Simulate Dataset: core-labs/2-models/21-simulate-dataset.md
-      - Evaluate Models: core-labs/2-models/22-evaluate-models.md
-    - 3. Model Customization:
-      - Overview: core-labs/3-customization/index.md
-      - Basic Fine-tuning: core-labs/3-customization/31-basic-finetuning.md
-      - Custom Grader: core-labs/3-customization/32-custom-grader.md
-      - Distillation Fine-tuning: core-labs/3-customization/33-distill-finetuning.md
-    - 4. Evaluation Metrics:
-      - Overview: core-labs/4-evaluation/index.md
-      - First Evaluation: core-labs/4-evaluation/41-first-evaluation.md
-      - Evaluate Quality: core-labs/4-evaluation/42-evaluate-quality.md
-      - Evaluate Safety: core-labs/4-evaluation/43-evaluate-safety.md
-      - Evaluate Agents: core-labs/4-evaluation/44-evaluate-agents.md
-    - 5. Tracing & Telemetry:
-      - Overview: core-labs/5-tracing/index.md
-    - 6. Deployment & Insights:
-      - Overview: core-labs/6-deployment/index.md
-    - 7. Teardown & Cleanup:
+    - Lab 1. Agent Architecture:
+      - Build Cora Retail Agent: core-labs/1-agents/11-agent-service.md
+    - Lab 2. Model Context:
+      - 2.1 Simulate Dataset: core-labs/2-models/21-simulate-dataset.md
+      - 2.2 Evaluate Models: core-labs/2-models/22-evaluate-models.md
+    - Lab 3. Model Customization:
+      - 3.1 Basic Fine-tuning: core-labs/3-customization/31-basic-finetuning.md
+      - 3.2 Custom Grader: core-labs/3-customization/32-custom-grader.md
+      - 3.3 Distillation Fine-tuning: core-labs/3-customization/33-distill-finetuning.md
+    - Lab 4. Evaluation Metrics:
+      - 4.1 First Evaluation: core-labs/4-evaluation/41-first-evaluation.md
+      - 4.4 Evaluate Agents: core-labs/4-evaluation/44-evaluate-agents.md
+    - Lab 5. Tracing & Telemetry:
+      - 5.1 Trace Cora Agent: core-labs/5-tracing/51-trace-cora-retail-agent.md
+    - Lab 6. Deployment & Insights:
+      - 6.0 Deployment: core-labs/6-deployment/60-deployment.md
+    - Lab 7. Teardown & Cleanup:
       - Overview: core-labs/7-teardown/index.md
   - More Labs:
     - Overview: more-labs/index.md
+    - Lab 1. Agent Architecture:
+      - 1.2 Agent Framework: more-labs/1-agents/12-agent-framework.md
+    - Lab 4. Evaluation Metrics:
+      - 4.2 Evaluate Quality: more-labs/4-evaluation/42-evaluate-quality.md
+      - 4.3 Evaluate Safety: more-labs/4-evaluation/43-evaluate-safety.md
+    - Lab 5. Tracing & Telemetry:
+      - 5.0a Collect Span Snapshots: more-labs/5-tracing/50-collect-span-snapshots.md
+      - 5.0b Trace Agent Session: more-labs/5-tracing/50-trace-agent-session.md
+      - 5.1 OpenAI Planner: more-labs/5-tracing/51-openai-weekend-planner.md
+      - 5.2 LangChain Planner: more-labs/5-tracing/52-langchain-weekend-planner.md
+      - 5.3 LangGraph Music Router: more-labs/5-tracing/53-langgraph-music-router.md

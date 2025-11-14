@@ -43,14 +43,10 @@ Explore additional content at your own pace using your Azure subscription after 
 
 Ready to begin? Start with the setup and validation lab to ensure your environment is configured correctly.
 
-[Begin Setup →](core-labs/0-setup/index.md){ .md-button .md-button--primary }
-[View Workshop Outline →](core-labs/outline.md){ .md-button }
-
 ---
 
 ## Additional Resources
 
-- **Application Scenario:** Learn about the [Zava Enterprise Retailer](core-labs/0-setup/scenario.md) customer service chatbot
 - **Conceptual Framework:** Review the [Workshop Outline](core-labs/outline.md) for detailed background on agentic AI concepts
 - **Source Repository:** [GitHub Repository](https://github.com/microsoft/ignite25-PDY123-learn-how-to-observe-manage-and-scale-agentic-ai-apps-using-azure)
 

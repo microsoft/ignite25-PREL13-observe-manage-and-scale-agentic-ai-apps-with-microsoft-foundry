@@ -22,6 +22,10 @@ By the end of this lab, you will be able to:
 - ✅ Exported any data or artifacts you want to keep
 - ✅ Noted any resources you want to preserve
 
+## Previous Lab
+
+- **[← Lab 6: Deployment](../6-deployment/60-deployment.md)**
+
 ## Important Warnings
 
 !!! danger "Data Loss Warning"
@@ -135,10 +139,5 @@ Consider keeping for future learning:
 ## What's Next?
 
 - Explore [Additional Labs](../../more-labs/index.md) for advanced topics
-- Review what you learned in the [Core Labs](../6-deployment/index.md)
+- Review what you learned in the [Core Labs](../index.md)
 - Share your feedback on the [Workshop Homepage](../../index.md)
-
----
-
-[← Previous Lab](../6-deployment/index.md){ .md-button }
-[Back to Home →](../../index.md){ .md-button .md-button--primary }

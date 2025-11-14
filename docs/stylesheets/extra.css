@@ -1,11 +1,71 @@
 /* ============================================
+   CUSTOM ADMONITIONS
+   ============================================ */
+
+/* Prompt Admonition - GitHub Copilot Icon with gradient border */
+.md-typeset .admonition.prompt,
+.md-typeset details.prompt {
+  border-width: 2px;
+  border-style: solid;
+  border-image: linear-gradient(135deg, #FF69B4 0%, #9B59B6 50%, #3498DB 100%) 1;
+}
+
+.md-typeset .prompt > .admonition-title,
+.md-typeset .prompt > summary {
+  background: linear-gradient(135deg, rgba(255, 105, 180, 0.1) 0%, rgba(155, 89, 182, 0.1) 50%, rgba(52, 152, 219, 0.1) 100%);
+  border-image: linear-gradient(135deg, #FF69B4 0%, #9B59B6 50%, #3498DB 100%) 1;
+}
+
+/* Light theme - dark logo */
+.md-typeset .prompt > .admonition-title::before,
+.md-typeset .prompt > summary::before {
+  background-color: #1f2937;
+  -webkit-mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='96' height='96' viewBox='0 0 96 96'><path d='M95.667 67.954C92.225 73.933 72.24 88.04 47.997 88.04 23.754 88.04 3.769 73.933.328 67.954c-.216-.375-.307-.796-.328-1.226V55.661c.019-.371.089-.736.226-1.081 1.489-3.738 5.386-9.166 10.417-10.623.667-1.712 1.655-4.215 2.576-6.062-.154-1.414-.208-2.872-.208-4.345 0-5.322 1.128-9.99 4.527-13.466 1.587-1.623 3.557-2.869 5.893-3.805 5.595-4.545 13.563-8.369 24.48-8.369s19.057 3.824 24.652 8.369c2.337.936 4.306 2.182 5.894 3.805 3.399 3.476 4.527 8.144 4.527 13.466 0 1.473-.054 2.931-.208 4.345.921 1.847 1.909 4.35 2.576 6.062 5.03 1.457 8.928 6.885 10.417 10.623.163.41.231.848.231 1.289v10.644c0 .504-.081 1.004-.333 1.441ZM48.686 43.993l-.3.001-1.077-.001c-.423.709-.894 1.39-1.418 2.035-3.078 3.787-7.672 5.964-14.026 5.964-6.897 0-11.952-1.435-15.123-5.032a7.886 7.886 0 0 1-.342-.419l-.39.419v26.326c5.737 3.118 18.05 8.713 31.987 8.713 13.938 0 26.251-5.595 31.988-8.713V46.96l-.39-.419s-.132.181-.342.419c-3.171 3.597-8.226 5.032-15.123 5.032-6.354 0-10.949-2.177-14.026-5.964a17.178 17.178 0 0 1-1.418-2.034h-.066l.066-.001Zm-3.94-11.733c.17-1.326.251-2.513.253-3.573v-.084c-.005-3.077-.678-5.079-1.752-6.308-1.365-1.562-4.184-2.758-10.127-2.115-6.021.652-9.386 2.146-11.294 4.098-1.847 1.889-2.818 4.715-2.818 9.272 0 4.842.698 7.703 2.232 9.443 1.459 1.655 4.332 3.001 10.625 3.001 4.837 0 7.603-1.573 9.371-3.749 1.899-2.336 2.967-5.759 3.51-9.985Zm6.503 0c.543 4.226 1.611 7.649 3.51 9.985 1.768 2.176 4.533 3.749 9.371 3.749 6.292 0 9.165-1.346 10.624-3.001 1.535-1.74 2.232-4.601 2.232-9.443 0-4.557-.97-7.383-2.817-9.272-1.908-1.952-5.274-3.446-11.294-4.098-5.943-.643-8.763.553-10.127 2.115-1.074 1.229-1.747 3.231-1.752 6.308v.084c.002 1.06.083 2.247.253 3.573Zm-2.563 11.734h.066l-.066-.001v.001Z'/><path d='M38.5 55.75a3.5 3.5 0 0 1 3.5 3.5v8.5a3.5 3.5 0 1 1-7 0v-8.5a3.5 3.5 0 0 1 3.5-3.5ZM57.5 55.75a3.5 3.5 0 0 1 3.5 3.5v8.5a3.5 3.5 0 1 1-7 0v-8.5a3.5 3.5 0 0 1 3.5-3.5Z'/></svg>");
+          mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='96' height='96' viewBox='0 0 96 96'><path d='M95.667 67.954C92.225 73.933 72.24 88.04 47.997 88.04 23.754 88.04 3.769 73.933.328 67.954c-.216-.375-.307-.796-.328-1.226V55.661c.019-.371.089-.736.226-1.081 1.489-3.738 5.386-9.166 10.417-10.623.667-1.712 1.655-4.215 2.576-6.062-.154-1.414-.208-2.872-.208-4.345 0-5.322 1.128-9.99 4.527-13.466 1.587-1.623 3.557-2.869 5.893-3.805 5.595-4.545 13.563-8.369 24.48-8.369s19.057 3.824 24.652 8.369c2.337.936 4.306 2.182 5.894 3.805 3.399 3.476 4.527 8.144 4.527 13.466 0 1.473-.054 2.931-.208 4.345.921 1.847 1.909 4.35 2.576 6.062 5.03 1.457 8.928 6.885 10.417 10.623.163.41.231.848.231 1.289v10.644c0 .504-.081 1.004-.333 1.441ZM48.686 43.993l-.3.001-1.077-.001c-.423.709-.894 1.39-1.418 2.035-3.078 3.787-7.672 5.964-14.026 5.964-6.897 0-11.952-1.435-15.123-5.032a7.886 7.886 0 0 1-.342-.419l-.39.419v26.326c5.737 3.118 18.05 8.713 31.987 8.713 13.938 0 26.251-5.595 31.988-8.713V46.96l-.39-.419s-.132.181-.342.419c-3.171 3.597-8.226 5.032-15.123 5.032-6.354 0-10.949-2.177-14.026-5.964a17.178 17.178 0 0 1-1.418-2.034h-.066l.066-.001Zm-3.94-11.733c.17-1.326.251-2.513.253-3.573v-.084c-.005-3.077-.678-5.079-1.752-6.308-1.365-1.562-4.184-2.758-10.127-2.115-6.021.652-9.386 2.146-11.294 4.098-1.847 1.889-2.818 4.715-2.818 9.272 0 4.842.698 7.703 2.232 9.443 1.459 1.655 4.332 3.001 10.625 3.001 4.837 0 7.603-1.573 9.371-3.749 1.899-2.336 2.967-5.759 3.51-9.985Zm6.503 0c.543 4.226 1.611 7.649 3.51 9.985 1.768 2.176 4.533 3.749 9.371 3.749 6.292 0 9.165-1.346 10.624-3.001 1.535-1.74 2.232-4.601 2.232-9.443 0-4.557-.97-7.383-2.817-9.272-1.908-1.952-5.274-3.446-11.294-4.098-5.943-.643-8.763.553-10.127 2.115-1.074 1.229-1.747 3.231-1.752 6.308v.084c.002 1.06.083 2.247.253 3.573Zm-2.563 11.734h.066l-.066-.001v.001Z'/><path d='M38.5 55.75a3.5 3.5 0 0 1 3.5 3.5v8.5a3.5 3.5 0 1 1-7 0v-8.5a3.5 3.5 0 0 1 3.5-3.5ZM57.5 55.75a3.5 3.5 0 0 1 3.5 3.5v8.5a3.5 3.5 0 1 1-7 0v-8.5a3.5 3.5 0 0 1 3.5-3.5Z'/></svg>");
+}
+
+/* Dark theme - light logo */
+[data-md-color-scheme="slate"] .md-typeset .prompt > .admonition-title::before,
+[data-md-color-scheme="slate"] .md-typeset .prompt > summary::before {
+  background-color: #f9fafb;
+}
+
+/* Custom Lab Admonition with Beaker Icon and Green Gradient */
+.md-typeset .admonition.lab,
+.md-typeset details.lab {
+  border-width: 2px;
+  border-style: solid;
+  border-image: linear-gradient(135deg, #10B981 0%, #059669 50%, #047857 100%) 1;
+}
+
+.md-typeset .lab > .admonition-title,
+.md-typeset .lab > summary {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(5, 150, 105, 0.1) 50%, rgba(4, 120, 87, 0.1) 100%);
+  border-image: linear-gradient(135deg, #10B981 0%, #059669 50%, #047857 100%) 1;
+}
+
+/* Light theme - dark beaker icon */
+.md-typeset .lab > .admonition-title::before,
+.md-typeset .lab > summary::before {
+  background-color: #1f2937;
+  -webkit-mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M9 3h6v7l4.5 6.5a2 2 0 0 1-1.66 3.5H6.16a2 2 0 0 1-1.66-3.5L9 10V3z'/><path d='M9 3v3'/><path d='M15 3v3'/><circle cx='12' cy='15' r='1.5'/></svg>");
+          mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M9 3h6v7l4.5 6.5a2 2 0 0 1-1.66 3.5H6.16a2 2 0 0 1-1.66-3.5L9 10V3z'/><path d='M9 3v3'/><path d='M15 3v3'/><circle cx='12' cy='15' r='1.5'/></svg>");
+}
+
+/* Dark theme - light beaker icon */
+[data-md-color-scheme="slate"] .md-typeset .lab > .admonition-title::before,
+[data-md-color-scheme="slate"] .md-typeset .lab > summary::before {
+  background-color: #f9fafb;
+}
+
+/* ============================================
    HERO/BANNER SECTION - Learning Objectives
    ============================================ */
 
 .hero-banner {
   background: #1976d2;           /* Primary blue */
   color: white;
-  padding: 1.5rem 2rem;
+  padding: 1.25rem 1.75rem;
   text-align: left;
   border-radius: 6px;
   margin-bottom: 2rem;
@@ -19,9 +79,9 @@
 }
 
 .hero-banner h3 {
-  font-size: 1.25rem;
+  font-size: 1.1rem;
   font-weight: 600;
-  margin: 0 0 0.75rem 0;
+  margin: 0 0 0.6rem 0;
   color: white;
 }
 
@@ -35,15 +95,15 @@
   margin: 0;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 0.5rem;
+  gap: 0.4rem;
 }
 
 .hero-banner .objectives-list li {
-  font-size: 0.95rem;
+  font-size: 0.875rem;
   padding-left: 1.5rem;
   position: relative;
   color: white;
-  line-height: 1.5;
+  line-height: 1.4;
 }
 
 .hero-banner .objectives-list li::before {
@@ -63,94 +123,305 @@
 }
 
 /* ============================================
-   LABS GRID - Compact Cards
+   UNIFIED LABS GRID
    ============================================ */
 
+/* Single responsive grid for all labs */
 .labs-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 1.25rem;
-  margin: 2rem 0;
+  max-width: 1400px;
+  margin: 2rem auto 3rem auto;
 }
 
+/* Base lab card with uniform dimensions */
 .lab-card {
-  display: block;
-  padding: 1.25rem;
-  background: #e3f2fd;            /* Very light blue */
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
   border-radius: 8px;
-  border-left: 4px solid #1976d2; /* Primary blue */
   text-decoration: none;
-  color: #000000;
   transition: all 0.3s ease;
   position: relative;
-  box-shadow: 0 2px 8px rgba(25, 118, 210, 0.15);
-}
-
-[data-md-color-scheme="slate"] .lab-card {
-  background: #0d47a1;            /* Deep blue */
-  border-left-color: #64b5f6;     /* Light blue */
-  color: #ffffff;
-}
-
-.lab-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 20px rgba(25, 118, 210, 0.3);
-  border-left-width: 6px;
-  background: #bbdefb;            /* Light blue */
-}
-
-[data-md-color-scheme="slate"] .lab-card:hover {
-  box-shadow: 0 8px 20px rgba(100, 181, 246, 0.4);
-  background: #1565c0;            /* Darker blue */
-}
-
-.lab-number {
-  position: absolute;
-  top: 0.75rem;
-  right: 0.75rem;
-  font-size: 0.75rem;
-  font-weight: 700;
-  color: #ffffff;
-  background: #283593;            /* Indigo */
-  padding: 0.25rem 0.5rem;
-  border-radius: 4px;
-}
-
-[data-md-color-scheme="slate"] .lab-number {
-  color: #ffffff;
-  background: #1976d2;            /* Primary blue */
+  min-height: 130px;
 }
 
 .lab-card h3 {
-  color: #1976d2;
-  margin: 0 0 0.5rem 0;
-  font-size: 1.1rem;
+  margin: 0 0 0.4rem 0;
+  font-size: 0.95rem;
   font-weight: 600;
-  padding-right: 3rem;            /* Space for lab number */
-}
-
-[data-md-color-scheme="slate"] .lab-card h3 {
-  color: #64b5f6;                  /* Light blue */
+  padding-right: 3rem;
+  line-height: 1.25;
 }
 
 .lab-card p {
   margin: 0;
-  font-size: 0.875rem;
-  opacity: 0.85;
-  line-height: 1.5;
-  color: #000000;
+  font-size: 0.8rem;
+  line-height: 1.35;
+  flex-grow: 1;
 }
 
-[data-md-color-scheme="slate"] .lab-card p {
+.lab-number {
+  position: absolute;
+  top: 0.65rem;
+  right: 0.65rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 0.2rem 0.45rem;
+  border-radius: 4px;
+}
+
+/* Setup lab - Gray theme (consistent for light and dark) */
+.lab-card.setup-lab {
+  background: #eceff1;
+  border-left: 4px solid #607d8b;
+  box-shadow: 0 2px 8px rgba(96, 125, 139, 0.15);
+}
+
+[data-md-color-scheme="slate"] .lab-card.setup-lab {
+  background: #eceff1;
+  border-left-color: #607d8b;
+}
+
+.lab-card.setup-lab:hover {
+  background: #cfd8dc;
+  box-shadow: 0 8px 20px rgba(96, 125, 139, 0.3);
+  transform: translateY(-4px);
+  border-left-width: 6px;
+}
+
+[data-md-color-scheme="slate"] .lab-card.setup-lab:hover {
+  background: #cfd8dc;
+  box-shadow: 0 8px 20px rgba(96, 125, 139, 0.3);
+}
+
+.lab-card.setup-lab h3 {
+  color: #455a64;
+}
+
+[data-md-color-scheme="slate"] .lab-card.setup-lab h3 {
+  color: #455a64;
+}
+
+.lab-card.setup-lab:hover h3 {
+  color: #263238;
+}
+
+[data-md-color-scheme="slate"] .lab-card.setup-lab:hover h3 {
+  color: #263238;
+}
+
+.lab-card.setup-lab p {
+  color: #424242;
+}
+
+[data-md-color-scheme="slate"] .lab-card.setup-lab p {
+  color: #424242;
+}
+
+.lab-card.setup-lab .lab-number {
+  background: #546e7a;
   color: #ffffff;
 }
 
-.lab-card:hover h3 {
-  color: #0d47a1;                  /* Deep blue */
+[data-md-color-scheme="slate"] .lab-card.setup-lab .lab-number {
+  background: #546e7a;
+  color: #ffffff;
 }
 
-[data-md-color-scheme="slate"] .lab-card:hover h3 {
-  color: #90caf9;                  /* Medium light blue */
+/* Rainbow color palette for lab numbers based on folder */
+/* Lab 0 - Red */
+.lab-number.lab-0 {
+  background: #e53935 !important;
+  color: #ffffff !important;
+}
+
+[data-md-color-scheme="slate"] .lab-number.lab-0 {
+  background: #ef5350 !important;
+  color: #ffffff !important;
+}
+
+/* Lab 1 - Orange */
+.lab-number.lab-1 {
+  background: #fb8c00 !important;
+  color: #ffffff !important;
+}
+
+[data-md-color-scheme="slate"] .lab-number.lab-1 {
+  background: #ffa726 !important;
+  color: #000000 !important;
+}
+
+/* Lab 2 - Yellow */
+.lab-number.lab-2 {
+  background: #fdd835 !important;
+  color: #000000 !important;
+}
+
+[data-md-color-scheme="slate"] .lab-number.lab-2 {
+  background: #ffee58 !important;
+  color: #000000 !important;
+}
+
+/* Lab 3 - Green */
+.lab-number.lab-3 {
+  background: #43a047 !important;
+  color: #ffffff !important;
+}
+
+[data-md-color-scheme="slate"] .lab-number.lab-3 {
+  background: #66bb6a !important;
+  color: #000000 !important;
+}
+
+/* Lab 4 - Blue */
+.lab-number.lab-4 {
+  background: #1e88e5 !important;
+  color: #ffffff !important;
+}
+
+[data-md-color-scheme="slate"] .lab-number.lab-4 {
+  background: #42a5f5 !important;
+  color: #000000 !important;
+}
+
+/* Lab 5 - Indigo */
+.lab-number.lab-5 {
+  background: #3949ab !important;
+  color: #ffffff !important;
+}
+
+[data-md-color-scheme="slate"] .lab-number.lab-5 {
+  background: #5c6bc0 !important;
+  color: #ffffff !important;
+}
+
+/* Lab 6 - Violet */
+.lab-number.lab-6 {
+  background: #8e24aa !important;
+  color: #ffffff !important;
+}
+
+[data-md-color-scheme="slate"] .lab-number.lab-6 {
+  background: #ab47bc !important;
+  color: #ffffff !important;
+}
+
+/* Core labs - Blue theme (original) */
+.lab-card.core-lab {
+  background: #e3f2fd;
+  border-left: 4px solid #1976d2;
+  box-shadow: 0 2px 8px rgba(25, 118, 210, 0.15);
+}
+
+[data-md-color-scheme="slate"] .lab-card.core-lab {
+  background: #0d47a1;
+  border-left-color: #64b5f6;
+}
+
+.lab-card.core-lab:hover {
+  background: #bbdefb;
+  box-shadow: 0 8px 20px rgba(25, 118, 210, 0.3);
+  transform: translateY(-4px);
+  border-left-width: 6px;
+}
+
+[data-md-color-scheme="slate"] .lab-card.core-lab:hover {
+  background: #1565c0;
+  box-shadow: 0 8px 20px rgba(100, 181, 246, 0.4);
+}
+
+.lab-card.core-lab h3 {
+  color: #1976d2;
+}
+
+[data-md-color-scheme="slate"] .lab-card.core-lab h3 {
+  color: #64b5f6;
+}
+
+.lab-card.core-lab:hover h3 {
+  color: #0d47a1;
+}
+
+[data-md-color-scheme="slate"] .lab-card.core-lab:hover h3 {
+  color: #90caf9;
+}
+
+.lab-card.core-lab p {
+  color: #424242;
+}
+
+[data-md-color-scheme="slate"] .lab-card.core-lab p {
+  color: #e0e0e0;
+}
+
+.lab-card.core-lab .lab-number {
+  background: #1976d2;
+  color: #ffffff;
+}
+
+[data-md-color-scheme="slate"] .lab-card.core-lab .lab-number {
+  background: #64b5f6;
+  color: #000000;
+}
+
+/* More labs - Light blue/cyan theme */
+.lab-card.more-lab {
+  background: #e0f7fa;
+  border-left: 4px solid #00acc1;
+  box-shadow: 0 2px 8px rgba(0, 172, 193, 0.15);
+}
+
+[data-md-color-scheme="slate"] .lab-card.more-lab {
+  background: #1e3a3f;
+  border-left-color: #4dd0e1;
+}
+
+.lab-card.more-lab:hover {
+  background: #b2ebf2;
+  box-shadow: 0 8px 20px rgba(0, 172, 193, 0.3);
+  transform: translateY(-4px);
+  border-left-width: 6px;
+}
+
+[data-md-color-scheme="slate"] .lab-card.more-lab:hover {
+  background: #2a4d54;
+  box-shadow: 0 8px 20px rgba(77, 208, 225, 0.4);
+}
+
+.lab-card.more-lab h3 {
+  color: #00838f;
+}
+
+[data-md-color-scheme="slate"] .lab-card.more-lab h3 {
+  color: #4dd0e1;
+}
+
+.lab-card.more-lab:hover h3 {
+  color: #006064;
+}
+
+[data-md-color-scheme="slate"] .lab-card.more-lab:hover h3 {
+  color: #80deea;
+}
+
+.lab-card.more-lab p {
+  color: #424242;
+}
+
+[data-md-color-scheme="slate"] .lab-card.more-lab p {
+  color: #e0e0e0;
+}
+
+.lab-card.more-lab .lab-number {
+  background: #00acc1;
+  color: #ffffff;
+}
+
+[data-md-color-scheme="slate"] .lab-card.more-lab .lab-number {
+  background: #4dd0e1;
+  color: #000000;
 }
 
 /* ============================================

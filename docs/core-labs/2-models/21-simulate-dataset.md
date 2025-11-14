@@ -1,36 +1,64 @@
-# Simulate Dataset
+# Simulate Test Datasets
 
-Generate synthetic datasets for testing and evaluating your agentic AI application.
+## 1. Objective
 
-## Description
+Generate synthetic query-response pairs from a product catalog using Azure AI Search and the Azure AI Evaluation Simulator to create high-quality test datasets for model evaluation.
 
-Learn how to use AI models to generate realistic customer service queries and responses, creating a synthetic dataset for evaluation and testing.
+## 2. Scenario
 
-## Learning Objectives
+Cora is Zava Hardware Store's customer service chatbot that helps DIY enthusiasts find the right home improvement products. Before deploying Cora to production, you need quality test data to measure her performance. Rather than manually creating hundreds of test queries, you'll use Azure AI's synthetic data generation capabilities to automatically create realistic customer queries and expected responses based on Zava's product catalog. This ensures Cora can accurately answer questions about paint, tools, hardware, and other products before customers interact with her.
 
-- Generate synthetic customer queries
-- Create diverse test scenarios
-- Build evaluation datasets programmatically
+## 3. Instructions
 
-## Instructions
+!!! lab "NOTEBOOK: Simulate Test Datasets"
 
-**📓 Notebook:** [`labs/2-models/21-simulate-dataset.ipynb`](https://github.com/microsoft/ignite25-PDY123-learn-how-to-observe-manage-and-scale-agentic-ai-apps-using-azure/blob/main/labs/2-models/21-simulate-dataset.ipynb)
+    **📓 Open:** [`labs/2-models/21-simulate-dataset.ipynb`](https://github.com/microsoft/ignite25-PDY123-learn-how-to-observe-manage-and-scale-agentic-ai-apps-using-azure/blob/main/labs/2-models/21-simulate-dataset.ipynb)
+    
+    **🚀 Run the notebook:**
+    
+    1. Select the Python kernel when prompted
+    2. Clear all outputs (optional, for a clean start)
+    3. Run all cells sequentially
 
-## Copilot Prompts
+**What you'll learn in this lab:**
 
-```
-Show me how to generate realistic customer service conversations using GPT-4
-```
+1. Configure Azure AI Evaluation Simulator with Azure OpenAI model configuration
+2. Connect to Azure AI Search and implement product catalog retrieval functions
+3. Create RAG application callback that simulates complete query-response workflow
+4. Generate synthetic query-response pairs with realistic customer queries
+5. Save and validate dataset in JSONL format for evaluation purposes
 
-```
-Help me create a diverse set of test queries covering different customer intents
-```
+## 4. Ask Copilot
 
-## Related Resources
+!!! prompt "OPTIONAL: Build Your Intuition"
+    Open GitHub Copilot Chat in VS Code by pressing `Ctrl+Alt+I` (Windows/Linux) or `Cmd+Shift+I` (Mac), then try these prompts to build your own intuition on this topic - or write your own. To copy a prompt, hover over the code block below to see the _copy to clipboard_ icon.
 
-- 📘 [Working with Data in Azure AI Foundry](https://learn.microsoft.com/azure/ai-studio/how-to/data-add)
+1. Ask for Guidance:
 
----
+    ```title="" linenums="0"
+    Show me how to use the Azure AI Evaluation Simulator to generate synthetic test data from my product catalog in Azure AI Search
+    ```
 
-[← Back to Lab 2](index.md){ .md-button }
-[Next: Evaluate Models →](22-evaluate-models.md){ .md-button .md-button--primary }
+1. Ask for Explanations:
+
+    ```title="" linenums="0"
+    Explain the difference between generating synthetic test data with a simulator versus manually creating test queries
+    ```
+
+1. Ask for Specific Help:
+
+    ```title="" linenums="0"
+    Help me modify the RAG application callback function to include additional metadata fields like product SKU and category
+    ```
+
+## 5. Related Resources
+
+- 📘 [Generate synthetic and simulated data for evaluation](https://learn.microsoft.com/azure/ai-foundry/how-to/develop/simulator-interaction-data)
+- 📘 [Azure AI Evaluation Simulator for testing conversational applications](https://learn.microsoft.com/azure/ai-foundry/concepts/concept-synthetic-data)
+- 📘 [Generative AI app developer workflow - evaluation datasets](https://learn.microsoft.com/azure/databricks/generative-ai/tutorials/ai-cookbook/genai-developer-workflow)
+
+## 6. Key Takeaways
+
+- Azure AI Evaluation Simulator automates creation of realistic test queries from your product catalog, eliminating manual test data creation
+- RAG callback functions enable end-to-end testing by simulating the complete retrieval-augmentation-generation workflow
+- JSONL format test datasets provide standardized input for comprehensive model evaluation and comparison
