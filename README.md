@@ -37,14 +37,13 @@ By the end of this session, you will be able to
 
 ### 💻 Technologies Used
 
-- Azure Open AI models
-- Azure AI Foundry
-- Azure AI Evaluation SDK
-- Supervised Fine Tuning
-- Model Distillation
-- Azure Monitor
-- Azure Application Insights
-- Azure AI Search
+- **[Azure AI Foundry](https://learn.microsoft.com/azure/ai-studio/)** - Platform for building and deploying enterprise AI applications
+- **[Azure AI Agent Service](https://learn.microsoft.com/azure/ai-foundry/agents/overview)** - Managed service for production AI agents with tool orchestration
+- **[Azure AI Search](https://learn.microsoft.com/azure/search/)** - Semantic and vector search for grounding agent responses
+- **[Azure AI Evaluation SDK](https://learn.microsoft.com/python/api/overview/azure/ai-evaluation-readme)** - SDK for evaluating AI quality, safety, and agent performance
+- **[Azure Application Insights](https://learn.microsoft.com/azure/azure-monitor/app/app-insights-overview)** - Performance monitoring with distributed tracing
+- **[Microsoft Agent Framework](https://learn.microsoft.com/agent-framework/)** - SDK for custom multi-agent orchestration
+- **[OpenTelemetry](https://learn.microsoft.com/azure/ai-foundry/concepts/trace)** - Observability framework for tracing AI operations
 
 ### 📚 Resources and Next Steps
 

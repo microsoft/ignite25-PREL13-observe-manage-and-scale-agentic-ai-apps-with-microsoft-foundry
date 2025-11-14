@@ -38,7 +38,7 @@ This document introduces the key concepts covered in the PREL13 workshop through
 7. [Governance Strategies](#7-governance-strategies)
    - 7.1 [What is AI Governance?](#71-what-is-ai-governance)
    - 7.2 [Key Governance Pillars](#72-key-governance-pillars)
-   - 7.3 [Safety & Responsible AI](#73-safety-and-responsible-ai)
+   - 7.3 [Safety & Responsible AI](#73-safety-responsible-ai)
    - 7.4 [Zava's Governance Guidance](#74-zavas-governance-guidance)
 
 ---
