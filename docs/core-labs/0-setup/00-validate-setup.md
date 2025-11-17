@@ -115,4 +115,5 @@ Expected results:
 
 ---
 
-!!! success "Environment validated. Proceed to Lab 1: Agents."
+!!! note "Next Step"
+    Validation successful? Close this notebook to free resources and continue to Lab 1: Agents.

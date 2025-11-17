@@ -53,3 +53,9 @@ Now that Cora is handling customer queries, the team needs production-grade obse
 - Production agents require comprehensive tracing for reliability and debugging
 - Trace analysis helps identify common failure patterns and optimization opportunities
 - Multi-turn conversations create complex traces that reveal agent reasoning patterns
+
+---
+
+!!! note "Next Step"
+    Once you have collected and inspected traces, close the notebook and continue to deployment labs.
+

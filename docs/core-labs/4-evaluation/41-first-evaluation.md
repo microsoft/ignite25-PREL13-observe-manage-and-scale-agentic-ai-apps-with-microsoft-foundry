@@ -53,3 +53,8 @@ Introduction to Azure AI's evaluation capabilities. Learn the basics of running 
 - The evaluate() function provides a systematic way to assess AI application quality and safety using built-in evaluators
 - Evaluation metrics use Likert scales (1-5) with configurable thresholds to identify quality and safety issues
 - Azure AI Foundry portal provides visualization and tracking capabilities for comparing evaluation runs over time
+
+---
+
+!!! note "Next Step"
+    After reviewing evaluation metrics, close the notebook and move to the next evaluation or tracing lab.

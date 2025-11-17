@@ -53,3 +53,9 @@ Evaluate agents on metrics specific to agentic AI systems, such as correct inten
 - Agent evaluators measure multi-step workflow performance: intent understanding, tool usage accuracy, and task completion
 - Specialized agent metrics complement standard quality/safety evaluators for comprehensive agentic system assessment
 - Agent evaluation requires test data that captures the full workflow context including tool calls and reasoning steps
+
+---
+
+!!! note "Next Step"
+    Finished agent evaluation? Close the notebook and proceed to tracing for deeper execution insights.
+

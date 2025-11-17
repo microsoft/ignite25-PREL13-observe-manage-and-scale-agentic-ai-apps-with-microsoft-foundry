@@ -51,3 +51,6 @@ Cora is Zava's AI customer service representative who helps customers find the r
 - Azure AI Agent Service provides managed infrastructure for building conversational AI agents with persistent conversation state
 - Threads enable multi-turn conversations by maintaining message history automatically, allowing agents to reference previous interactions
 - Agents are stateless orchestrators that combine instructions, tools, and model capabilities to respond intelligently to user queries
+
+!!! note "Next Step"
+    Successfully deployed an agent? Close this notebook to free resources and continue to Lab 2: Models.

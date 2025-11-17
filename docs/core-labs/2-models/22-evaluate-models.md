@@ -54,3 +54,8 @@ Zava's leadership wants to ensure Cora provides the best customer experience pos
 - Azure AI Foundry's built-in evaluators provide standardized quality and safety metrics for objective model comparison
 - Side-by-side evaluation reveals performance trade-offs between cost-effective and premium models for specific use cases
 - Publishing evaluation results to Azure AI Foundry portal enables team collaboration and historical comparison of model performance
+
+---
+
+!!! note "Next Step"
+    When evaluations are complete, close the notebook and proceed to customization labs.

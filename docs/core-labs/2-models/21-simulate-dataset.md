@@ -50,3 +50,9 @@ Cora is Zava Hardware Store's customer service chatbot that helps DIY enthusiast
 - Azure AI Evaluation Simulator automates creation of realistic test queries from your product catalog, eliminating manual test data creation
 - RAG callback functions enable end-to-end testing by simulating the complete retrieval-augmentation-generation workflow
 - JSONL format test datasets provide standardized input for comprehensive model evaluation and comparison
+
+---
+
+!!! note "Next Step"
+    Finished generating datasets? Close the notebook and continue to model evaluation or customization as directed.
+
