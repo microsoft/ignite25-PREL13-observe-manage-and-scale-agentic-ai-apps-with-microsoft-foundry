@@ -9,6 +9,11 @@
 [![Microsoft Azure AI Foundry Discord](https://dcbadge.limes.pink/api/server/ByRwuEEgH4)](https://aka.ms/AIFoundryDiscord-Ignite25)
 [![Azure AI Foundry Developer Forum](https://img.shields.io/badge/GitHub-Azure_AI_Foundry_Developer_Forum-blue?style=for-the-badge&logo=github&color=adff2f&logoColor=fff)](https://aka.ms/AIFoundryForum-Ignite25)
 
+
+> [!IMPORTANT]  
+> Check out the [msignite2025-v1.0 release](https://github.com/microsoft/ignite25-PREL13-observe-manage-and-scale-agentic-ai-apps-with-microsoft-foundry/releases/tag/msignite2025-v1.0) tag to see the exact version of this lab that was delivered at [Microsoft Ignite 2025](https://ignite.microsoft.com/). The _main_ line may be getting a refresh soon to reflect the latest changes and feature updates from Microsoft Ignite.
+
+
 ### Session Description
 
 This hands-on workshop will provide participants with the skills to effectively manage, govern, and scale agentic AI applications using Azure and Azure AI Foundry. The session will cover observability capabilities, model management policies, agent functionalities, and governance strategies. Participants will engage in practical exercises to apply these concepts in real-world scenarios.
